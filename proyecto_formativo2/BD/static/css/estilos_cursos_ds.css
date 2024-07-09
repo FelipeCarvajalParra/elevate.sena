@@ -1,0 +1,164 @@
+
+#img-perfil {
+  position: absolute;
+  width: 100%;
+  height: 100hv;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+}
+
+.search input,
+.top-bar .search {
+  width: 100%;
+  min-width: 128px;
+  height: 40px;
+  padding: 0 40px;
+  font-size: 16px;
+  outline: none;
+  border: none;
+  background: #f5f5f5;
+}
+
+.search i {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  cursor: pointer;
+}
+
+/* estilos de las cartas */
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-gap: 20px;
+  max-width: 100%;
+  padding: 20px;
+  margin-top: 60px;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  box-shadow: 0 4px 8px rgb(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  position: relative;
+  object-fit: cover;
+}
+
+.card h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+  padding: 6px;
+}
+
+.card p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 16px;
+  padding: 6px;
+}
+
+.card .card-btn {
+  display: block;
+  background-color: #47cebe;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  text-align: center;
+  transition: background-color 0.3s;
+}
+
+.card .card-btn:hover {
+  background-color: #2ca8a6;
+}
+
+@media (max-width: 1090px) {
+  .sidebar {
+    width: 60px;
+  }
+  .main {
+    width: calc(100% - 60px);
+    left: 60px;
+  }
+  .top-bar {
+    width: calc(100% - 60px);
+  }
+
+  .card-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+  }
+
+  .card {
+    width: 100%;
+    height: 100%;
+  }
+
+  .card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+}
+
+@media (max-width: 860px) {
+  .card-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card img {
+    height: 180px;
+  }
+}
+
+@media (max-width: 530px) {
+  .card-container {
+    grid-template-columns: 1fr;
+  }
+
+  .card img {
+    height: 160px;
+  }
+}
+
+@media (max-width: 420px) {
+  .last-report,
+  .report-for-days {
+    font-size: 70%;
+    padding: 10px;
+    min-height: 200px;
+  }
+  .cards,
+  .tables {
+    padding: 10px;
+  }
+  .search input {
+    padding: 0 10px;
+  }
+  .user {
+    width: 40px;
+    height: 40px;
+  }
+
+  .card-container {
+    grid-gap: 10px;
+  }
+
+  .card img {
+    height: 140px;
+  }
+}

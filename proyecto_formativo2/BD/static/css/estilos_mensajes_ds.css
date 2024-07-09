@@ -1,0 +1,186 @@
+.search input,
+.top-bar .search {
+  width: 100%;
+  min-width: 128px;
+  height: 40px;
+  padding: 0 40px;
+  font-size: 16px;
+  outline: none;
+  border: none;
+  background: #f5f5f5;
+}
+
+.search i {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  cursor: pointer;
+}
+
+/* Estilos para las tablas */
+.tables {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 20px;
+  align-items: self-start;
+  padding: 85px 20px 20px 20px;
+  text-align: center;
+}
+
+.col3 {
+  width: 40%;
+}
+
+.truncate {
+  max-width: 150px; /* Ajusta el ancho según tus necesidades */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Estilos para la tabla de reportes */
+.last-report {
+  min-height: 570px;
+  background: #fff;
+  padding: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para los encabezados */
+.heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #444;
+}
+
+/* Margen de las tablas */
+table {
+  margin-top: 10px;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead td {
+  font-weight: 600;
+  color: #333;
+}
+
+table tr {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+tbody tr:hover {
+  background: #444;
+  color: #fff;
+}
+
+table tbody tr:last-child {
+  border-bottom: none;
+}
+
+td {
+  padding: 9px 5px;
+}
+
+td i {
+  padding: 7px;
+  color: #fff;
+  border-radius: 50px;
+}
+
+.last-report table tbody td:last-child {
+  white-space: nowrap;
+}
+
+.bx {
+  cursor: pointer;
+}
+
+.far_vista {
+  background: #32bea6;
+}
+
+.far_eliminar {
+  background: #ed5564;
+}
+
+.far_gmail {
+  background: #655cc9;
+}
+
+.far_editar {
+  background: #63b4f4;
+}
+
+.btn {
+  padding: 5px 10px;
+  background: #47cebe;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* Estilos para las alertas de mensajes */
+
+.ventana {
+  border-radius: 15px;
+  padding: 20px;
+}
+
+.fecha {
+  font-size: 14px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.contenedor {
+  text-align: left;
+  font-size: 20px;
+}
+
+.swal2-close {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.swal2-input,
+.swal2-textarea,
+.swal2-select {
+  width: 70%;
+  color: black;
+}
+
+.swal2-checkbox {
+  width: 50%;
+  background-color: brown;
+  font-size: 13px;
+}
+
+#anotaciones {
+  resize: vertical;
+  max-height: 300px;
+}
+
+.activo, .inactivo{
+  background-color: rgb(118, 179, 26); 
+  height: 100%; 
+  width: 50%;
+  cursor: pointer;
+  color: white;
+  border: 1px solid black;
+}
+
+.activo:hover{
+  background-color: rgb(165, 197, 118); 
+}
+
+.inactivo:hover{
+  background-color: rgb(198, 89, 89); 
+}
+
+.inactivo{
+  background-color: rgb(179, 26, 26); 
+}

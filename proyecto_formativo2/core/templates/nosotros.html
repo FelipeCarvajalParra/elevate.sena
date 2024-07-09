@@ -1,0 +1,148 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<link rel="stylesheet" type="text/css" href='{% static "css/estilos_nosotros.css" %} ?v=11' >
+<title>{% block title %}Nosotros{% endblock %}</title>
+
+
+<div class="contenido-web">
+
+  <!-- Sección del título principal -->
+  <div class="titulo">
+    <h1>Nosotros</h1>
+  </div>
+
+  <!-- Primera sección: descripción del SENA -->
+  <div class="contenedor_1">
+    <div class="c1_descripcion">
+      <div class="des_imagen">
+        <!-- Imagen del logo del SENA -->
+        <img src="{% static 'img/NOSOSTROS_IMG/sena.jpg' %}" alt="Logo del SENA" width="80%" height="60%"/>
+      </div>
+      <div class="des_texto">
+        <!-- Descripción del SENA -->
+        <p>
+          El SENA, es un establecimiento público del orden nacional, con
+          personería jurídica, patrimonio propio e independiente, y autonomía
+          administrativa; adscrito al Ministerio del Trabajo, de Colombia.
+        </p>
+        <p>
+          Misión: El SENA está encargado de cumplir la función que le corresponde
+          al Estado de invertir en el desarrollo social y técnico de los
+          trabajadores colombianos, ofreciendo y ejecutando la formación
+          profesional integral, para la incorporación y el desarrollo de las
+          personas en actividades productivas que contribuyan al desarrollo
+          social, económico y tecnológico del país (Ley 119/1994).
+        </p>
+        <p>
+          Visión: Para el año 2026, el Servicio Nacional de Aprendizaje - SENA
+          estará a la vanguardia de la cualificación del talento humano, tanto a
+          nivel nacional como internacional. Esto se logrará a través de la
+          formación profesional integral, el empleo, el emprendimiento y el
+          reconocimiento de aprendizajes previos. Nuestro objetivo es generar
+          valor público y fortalecer la economía campesina, popular, verde y
+          digital, siempre con un enfoque diferencial orientado a la
+          construcción del cambio, la transformación productiva, la soberanía
+          alimentaria y la consolidación de una paz total, materializando así la
+          autonomía territorial, y promoviendo la justicia social, ambiental y
+          económica.
+        </p>
+      </div>
+    </div>
+    <!-- Imágenes relacionadas con la descripción del SENA -->
+    <div class="c1_imagenes">
+      <div class="c1_img">
+        <img class="imagen_circular" src="{% static 'img/NOSOSTROS_IMG/sena1.jpg' %}" alt="Área de alturas"/>
+      </div>
+      <div class="c1_img">
+        <img class="imagen_circular" src="{% static 'img/NOSOSTROS_IMG/sena2.jpg' %}" alt="Área de alturas"/>
+      </div>
+      <div class="c1_img">
+        <img class="imagen_circular" src="{% static 'img/NOSOSTROS_IMG/sena3.jpg' %}" alt="Área de alturas"/>
+      </div>
+    </div>
+  </div>
+
+  <!-- Segunda sección: descripción del SENA La Salada -->
+  <div class="contenedor_2">
+    <div class="titulo2">
+      <h2>Sena la salada</h2> <!-- Título de la sección -->
+    </div>
+    <div class="descripcion"><!-- Descripción del centro La Salada -->
+      <p>
+        Nuestro centro recibe el nombre de Centro de los Recursos Naturales
+        Renovables, La Salada, esto debido a los cambios tecnológicos y
+        científicos necesarios para el país, y por los nuevos programas que
+        buscan la capacitación técnica y tecnológica del recurso humano.<br /><br />
+        Durante estos 55 años, se ha consolidado la capacitación a personas
+        competitivas para el desarrollo empresarial, comunitario y trabajadores
+        especializados para los diversos sectores de la producción.<br /><br />
+        Alianzas y convenios claves han permitido traer conocimiento a
+        instructores y aprendices, que por medio de pasantías, han podido
+        capacitarse con universidades e instituciones técnicas y tecnológicas
+        extranjeras como México, España, Francia, Alemania, Australia, América
+        Latina y el Caribe. <br /><br />
+        La infraestructura con la que cuenta el Centro de los Recursos Naturales
+        Renovables, La Salada, permite fortalecer los sectores económicos y
+        agroindustriales de esta subregión del departamento, caracterizada por
+        sus actividades económicas como la caficultura, el turismo, la
+        producción de plátano, caña panelera, frutales, fríjol, hortalizas,
+        yuca, papa y maíz; conjuntamente con la industria ganadera, maderera y
+        el comercio.
+      </p>
+    </div>
+    <!-- Imágenes relacionadas con la descripción del SENA La Salada -->
+    <div class="c1_imagenes">
+      <div class="c1_img">
+        <img class="imagen_circular" src="{% static 'img/NOSOSTROS_IMG/la-salada1.jpg' %}" alt="Área de alturas"/>
+      </div>
+      <div class="c1_img">
+        <img class="imagen_circular" src="{% static 'img/NOSOSTROS_IMG/la-salada2.jpg' %}" alt="Área de alturas"/>
+      </div>
+      <div class="c1_img">
+        <img class="imagen_circular" src="{% static 'img/NOSOSTROS_IMG/la-salada3.jpg' %}" alt="Área de alturas"/>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tercera sección: descripción del área de alturas -->
+  <div class="contenedor_3">
+    <div class="titulo3">
+      <!-- Título de la sección -->
+      <h2>Área de alturas</h2>
+    </div>
+    <div class="cont3_contenido">
+      <!-- Descripción del área de alturas -->
+      <div class="con_descripcion">
+        El área de alturas del Centro de Recursos Naturales Renovables "La Salada" está
+        equipada para ofrecer la mejor calidad de educación posible en el sector de 
+        alturas. Este centro se dedica a formar a los aspirantes con cursos especializados 
+        y actualizados en trabajo seguro en alturas.<br><br>
+
+        Gracias a sus modernas instalaciones y a la experiencia de sus instructores, 
+        los estudiantes reciben una formación integral que combina teoría y práctica. El 
+        centro se destaca por su compromiso con la seguridad y la excelencia educativa, 
+        garantizando que los egresados estén altamente capacitados para enfrentar los 
+        desafíos del sector.
+      </div>
+      <!-- Imagen relacionada con el área de alturas -->
+      <div class="des_imagen">
+        <img class="imagen_circular" src="{% static 'img/NOSOSTROS_IMG/alturas3.jpg' %}" alt="Área de alturas" width="90%" height="90%"/>
+      </div>
+    </div>
+    <!-- Imágenes relacionadas con el área de alturas -->
+    <div class="c1_imagenes">
+      <div class="c1_img">
+        <img class="imagen_circular" src="{% static 'img/NOSOSTROS_IMG/alturas1.jpg' %}" alt="Área de alturas"/>
+      </div>
+      <div class="c1_img">
+        <img class="imagen_circular" src="{% static 'img/NOSOSTROS_IMG/alturas2.jpg' %}" alt="Área de alturas"/>
+      </div>
+      <div class="c1_img">
+        <img class="imagen_circular" src="{% static 'img/NOSOSTROS_IMG/alturas3_3.jpg' %}" alt="Área de alturas"/>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+

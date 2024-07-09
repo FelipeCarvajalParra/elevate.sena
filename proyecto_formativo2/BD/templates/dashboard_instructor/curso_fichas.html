@@ -1,0 +1,238 @@
+{% extends "dashboard_instructor/base_admin.html" %}
+
+{% block contend %}
+{% load static %}
+
+<link rel="stylesheet" href='{% static "css/estilos_mensajes_ds.css" %}' />
+
+<!-- Tabla con sus respectivos parámetros -->
+<div class="tables">
+  <div class="last-report">
+    <div class="heading">
+      <h2>{{nombre_curso}}</h2>
+      <div class="search">
+        <a onclick="crearFicha()" class="btn">Agregar</a>
+      </div>
+    </div>
+
+    <!-- Encabezado de la tabla -->
+    <table class="report">
+      <thead>
+        <tr>
+          <th class="col2">Ficha</th>
+          <th class="col2">Inicio</th>
+          <th class="col2">Final</th>
+          <th class="col2">Lugar</th>
+          <th class="col2">Activa</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Contenido de la tabla -->
+        {% for ficha in fichas %}
+        <tr data-nume-ficha="{{ ficha.nume_ficha }}" data-inic-ficha="{{ ficha.inic_ficha }}" data-fina-ficha="{{ ficha.fina_ficha }}" data-luga-ficha="{{ ficha.luga_ficha }}" data-nota-ficha="{{ ficha.nota_ficha }}">
+          <td>{{ ficha.nume_ficha }}</td>
+          {% if ficha.inic_ficha|stringformat:"s" == '9999-12-31' %}
+          <td>Sin definir</td>
+          {% else %}
+          <td>{{ ficha.inic_ficha }}</td>
+          {% endif %}
+
+          {% if ficha.fina_ficha|stringformat:"s" == '9999-12-31' %}
+          <td>Sin definir</td>
+          {% else %}
+          <td>{{ ficha.fina_ficha }}</td>
+          {% endif %}
+
+          <td>{{ ficha.luga_ficha }}</td>
+
+          {% if ficha.ficha_activa == 1 %}
+          <td>
+            <button class="activo" onclick="window.location.href = '/actualizarEstadoFicha/0/{{ ficha.nume_ficha }}/{{ curso }}'">SI</button>
+          </td>
+          {% else %}
+          <td>
+            <button class="inactivo"  onclick="window.location.href = '/actualizarEstadoFicha/1/{{ ficha.nume_ficha }}/{{ curso }}'">NO</button>
+          </td>
+          {% endif %}
+          
+          <td>
+            <i class="far_vista bx bxs-show" title="Ver registros" onclick="window.location.href = '/ficha/{{ ficha.nume_ficha }}' "></i>
+            <i class="far_editar bx bxs-pencil" title="Editar ficha" onclick="editarFicha(this, `{{ ficha.inic_ficha|date:'Y-m-d' }}`, `{{ ficha.fina_ficha|date:'Y-m-d' }}`)"></i>
+            <i class="far_eliminar bx bxs-trash" title="Eliminar ficha" onclick="validacion('{{ ficha.nume_ficha }}' , '{{ curso }}')"></i>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script src='{% static "js/scripts_fichas.js" %}'></script>
+
+<script>
+  function editarFicha(element, inicioValidacion, finalValidacion) {
+    const row = element.closest('tr'); // Encuentra la fila más cercana
+    const numFicha_antigua = row.dataset.numeFicha;
+    var inicioFicha = row.dataset.inicFicha; 
+    var finalFicha = row.dataset.finaFicha; 
+    const lugarFicha = row.dataset.lugaFicha; 
+    const notaFicha = row.dataset.notaFicha; 
+    var validacion1 = "null";
+    var validacion2 = "null";
+
+    if (inicioFicha === 'Dec. 31, 9999') {
+      inicioFicha = "";
+      validacion1 = "checked";
+    }
+    if (finalFicha === 'Dec. 31, 9999') {
+      finalFicha = "";
+      validacion2 = "checked";
+    }
+
+    Swal.fire({
+      title: 'Editar Ficha',
+      width: '600px', 
+      html: `
+        <input type="text" id="ficha" class="swal2-input" placeholder="Número de ficha" value="${numFicha_antigua}"><br>
+        <input type="text" id="inicio" class="swal2-input" placeholder="Fecha de inicio" onclick="changeToDate(this)" value="${inicioFicha}"><br>
+        <div class="swal2-checkbox">
+          <input type="checkbox" id="inicioSinDefinir" ${validacion1}>
+          <label for="inicioSinDefinir">Sin definir</label>
+        </div>
+        <input type="text" id="final" class="swal2-input" placeholder="Fecha de finalización" onclick="changeToDate(this)" value="${finalFicha}"><br>
+        <div class="swal2-checkbox">
+          <input type="checkbox" id="finalSinDefinir" ${validacion2}>
+          <label for="finalSinDefinir">Sin definir</label>
+        </div>
+        <input type="text" id="lugar" class="swal2-input" placeholder="Lugar" value="${lugarFicha}"><br>
+        <textarea id="anotaciones" class="swal2-textarea" maxlength="300" placeholder="Anotaciones">${notaFicha}</textarea><br>
+      `,
+      focusConfirm: false,
+      showCancelButton: true,
+      confirmButtonText: 'Guardar',
+      preConfirm: () => {
+        const ficha1 = document.getElementById('inicio').value;
+        const ficha2 = document.getElementById('final').value;
+
+        if (document.getElementById('inicio').type === 'date') {
+          inicioFicha = document.getElementById('inicio').value;
+        } else if (typeof ficha1 === 'string' || ficha1 === '') {
+          inicioFicha = inicioValidacion;
+        }
+
+        if (document.getElementById('final').type === 'date') {
+          finalFicha = document.getElementById('final').value;
+        } else if (typeof ficha1 === 'string' || ficha1 === '') {
+          finalFicha = finalValidacion;
+        }
+
+        const ficha = document.getElementById('ficha').value;
+        const inicio = document.getElementById('inicioSinDefinir').checked ? '9999-12-31' : `${inicioFicha}`;
+        const final = document.getElementById('finalSinDefinir').checked ? '9999-12-31' : `${finalFicha}`;
+        const lugar = document.getElementById('lugar').value;
+        const anotaciones = document.getElementById('anotaciones').value;
+        const seleccionar = '{{ curso }}';
+
+        if (!ficha || !inicio || !final || !lugar || !seleccionar) {
+          Swal.showValidationMessage('Por favor, complete todos los campos');
+          return false;
+        }
+
+        return {
+          ficha: ficha,
+          inicio: inicio,
+          final: final,
+          lugar: lugar,
+          anotaciones: anotaciones,
+          seleccionar: seleccionar
+        };
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = `/actualizarFicha/${numFicha_antigua}/${result.value.ficha}/${result.value.seleccionar}/${result.value.inicio}/${result.value.final}/${result.value.lugar}/${result.value.anotaciones}`;
+      }
+    });
+  }
+
+  function crearFicha() {
+    Swal.fire({
+      title: 'Crear Ficha',
+      width: '600px', 
+      html: `
+        <input type="text" id="ficha" class="swal2-input" placeholder="Número de ficha"><br>
+        <input type="text" id="inicio" class="swal2-input" placeholder="Fecha de inicio" onclick="changeToDate(this)"><br>
+        <div class="swal2-checkbox">
+          <input type="checkbox" id="inicioSinDefinir">
+          <label for="inicioSinDefinir">Sin definir</label>
+        </div>
+        <input type="text" id="final" class="swal2-input" placeholder="Fecha de finalización" onclick="changeToDate(this)"><br>
+        <div class="swal2-checkbox">
+          <input type="checkbox" id="finalSinDefinir">
+          <label for="finalSinDefinir">Sin definir</label>
+        </div>
+        <input type="text" id="lugar" class="swal2-input" placeholder="Lugar"><br>
+        <textarea id="anotaciones" class="swal2-textarea" maxlength="300" placeholder="Anotaciones"></textarea><br>
+      `,
+      focusConfirm: false,
+      showCancelButton: true,
+      confirmButtonText: 'Guardar',
+      preConfirm: () => {
+        const ficha = document.getElementById('ficha').value;
+        const inicio = document.getElementById('inicioSinDefinir').checked ? '9999-12-31' : document.getElementById('inicio').value;
+        const final = document.getElementById('finalSinDefinir').checked ? '9999-12-31' : document.getElementById('final').value;
+        const lugar = document.getElementById('lugar').value;
+        const anotaciones = document.getElementById('anotaciones').value;
+        const seleccionar = '{{ curso }}';
+
+        if (!ficha || !inicio || !final || !lugar || !seleccionar) {
+          Swal.showValidationMessage('Por favor, complete todos los campos');
+          return false;
+        }
+
+        return {
+          ficha: ficha,
+          inicio: inicio,
+          final: final,
+          lugar: lugar,
+          anotaciones: anotaciones,
+          seleccionar: seleccionar
+        };
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = `/agregarFicha/${result.value.ficha}/${result.value.seleccionar}/${result.value.inicio}/${result.value.final}/${result.value.lugar}/${result.value.anotaciones}`;
+      }
+    });
+  }
+
+  function changeToDate(input) {
+    input.type = 'date';
+  }
+</script>
+
+<!-- Mensajes emergentes -->
+{% if messages %}
+{% for message in messages %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "bottom-end",
+    showConfirmButton: false,
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer;
+    }
+  });
+  Toast.fire({
+    icon: "{{ message.tags }}",
+    title: "{{ message }}"
+  });
+</script>
+{% endfor %}
+{% endif %}
+
+{% endblock %}

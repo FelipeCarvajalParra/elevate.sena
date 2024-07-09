@@ -1,0 +1,62 @@
+{% extends "dashboard_aspirante/base_aspirante.html" %}
+{% block contend %}
+{% load static %}
+<link rel="stylesheet" href='{% static "css/estilos_mensajes_ds.css" %}'/>
+
+<!-- tabla con sus respectivos parametros -->
+<div class="tables">
+  <div class="last-report">
+    <div class="heading">
+      <h2>Fichas asociadas</h2>
+    </div>
+
+    <!-- encabezado de la tabla -->
+    <table class="report">
+      <thead>
+        <td class="col1">Ficha</td>
+        <td class="col2">Curso</td>
+        <td class="col2">Fecha de registro</td>
+        <td></td>
+      </thead>
+
+      <tbody>
+        <!-- contenido de la tabla -->
+        {% for registro in registros %}
+        <tr>
+            <td>{{ registro.nume_ficha1.nume_ficha }}</td>
+            <td>{{ registro.nombre_curso }}</td>
+            <td>{{ registro.fech_regis }}</td>
+        <td>
+            <a href="{% url 'FormularioActualizacion' registro.iden_ficha_aspirante  %}"><i class="far_vista bx bxs-show" title="Visualizar"></i></a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- mensajes emerjentes -->
+{% if messages %}
+{% for messages in messages %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "bottom-end",
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+        }
+        });
+        Toast.fire({
+        icon: "success",
+        title: "{{messages}}",
+        });
+</script>
+{% endfor %}
+{% endif %}
+{% endblock %}

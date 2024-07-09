@@ -1,0 +1,130 @@
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+  }
+  
+  body {
+    overflow-x: hidden;
+    height: 100%;
+    width: 100%;
+  }
+  
+  /* estilos del contenedor */
+  .container {
+    position: absolute;
+    width: 100%;
+  }
+  
+  /* estilos del contenedor o div .sidebar */
+  .sidebar {
+    position: fixed;
+    width: 250px;
+    height: 100%;
+    background: rgb(0, 0, 0);
+    overflow-x: hidden;
+    box-shadow: 0 4px 8px 0 rgb(0, 0, 0, 0.9);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .list_elements{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .cerrar_sesion{
+    margin-top: auto;
+  }
+
+  .sidebar ul li {
+    width: 100%;
+    list-style: none;
+  }
+  
+  .elemento-navegacion:hover, .elemento-navegacion a:hover {
+    background: #ffffff;
+    color: black;
+  }
+  
+  .sidebar ul li:first-child {
+    line-height: 60px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    border-bottom: 1px solid #ffff;
+  }
+  
+  .sidebar ul li:first-child:hover {
+    background: none;
+  }
+  
+  .sidebar ul li a {
+    width: 100%;
+    text-decoration: none;
+    color: #ffff;
+    height: 60px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .sidebar ul li a i {
+    min-width: 60px;
+    font-size: 30px;
+    text-align: center;
+  }
+  
+  .sidebar .title{
+    padding: 0 10px;
+    font-size: 20px;
+  }
+  
+  /* estilos del cuerpo de los elementos */
+  .main {
+    position: absolute;
+    width: calc(100% - 250px);
+    min-height: 100vh;
+    left: 250px;
+  }
+  
+  /* estilos para la barra de navegación */
+  .top-bar {
+    display: flex;
+    justify-content: end;
+    position: fixed;
+    height: 60px;
+    width: calc(100% - 250px);
+    align-items: center;
+    color: #eae8e8;
+    padding: 0 20px;
+    box-shadow: 0 4px 8px 0 rgb(0, 0, 0, 0.2);
+    z-index: 10;
+    background-color: #e3e1e1;
+  }
+
+  .top-bar a{
+    height: auto;
+    width: auto;
+    text-decoration:  none;
+    font-size: 15px;
+    padding: 10px;
+    border-radius: 10px;
+    color: black;
+  }
+
+  .top-bar a:hover{
+    text-decoration: underline;
+  }
+
+  .cerrar_sesion {
+    margin-top: auto;
+  }
+
+  .icono{
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+  }

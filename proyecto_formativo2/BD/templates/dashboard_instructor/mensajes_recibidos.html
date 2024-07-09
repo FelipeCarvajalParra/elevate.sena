@@ -1,0 +1,66 @@
+{% extends "dashboard_instructor/base_admin.html" %}
+{% block contend %}
+{% load static %}
+<link rel="stylesheet" href='{% static "css/estilos_mensajes_ds.css" %}'/>
+
+<!-- tabla con sus respectivos parametros -->
+<div class="tables">
+  <div class="last-report">
+    <div class="heading">
+      <h2>Mensajes</h2>
+    </div>
+
+    <!-- encabezado de la tabla -->
+    <table class="report">
+      <thead>
+        <td class="col1">Nombres</td>
+        <td class="col2">Apellidos</td>
+        <td class="col3">Mensaje</td>
+        <td class="col4">Fecha</td>
+        <td></td>
+      </thead>
+
+      <tbody>
+        <!-- contenido de la tabla -->
+        {% for registro in mensaje_grupo %}
+        <tr>
+          <td>{{registro.nomb_mensa}}</td>
+          <td>{{registro.apel_mensa}}</td>
+          <td class="truncate">{{registro.mens_mensa}}</td>
+          <td>{{registro.fech_mensa}}</td>
+          <td>
+            <i class="far_vista bx bxs-show" title="Visualizar" data-id="{{ registro.iden_mensa }}" data-nomb="{{ registro.nomb_mensa }}" data-apel="{{ registro.apel_mensa }}" data-mens="{{ registro.mens_mensa }}" data-fech="{{ registro.fech_mensa }}"></i>
+            <i class="far_eliminar bx bxs-trash" title="Eliminar Registro" data-id="{{ registro.iden_mensa }}"></i>
+            <i class="far_gmail bx bxl-gmail" title="Responder" data-nomb="{{ registro.nomb_mensa }}" data-apel="{{ registro.apel_mensa }}" data-correo="{{ registro.corr_mensa }}"></i>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+<script src='{% static "js/scripts_mensajes.js" %}' ></script>
+<!-- mensajes emerjentes -->
+{% if messages %}
+{% for messages in messages %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "bottom-end",
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+        }
+        });
+        Toast.fire({
+        icon: "success",
+        title: "{{messages}}",
+        });
+</script>
+{% endfor %}
+{% endif %}
+{% endblock %}

@@ -1,0 +1,221 @@
+{% extends "dashboard_aspirante/base_aspirante.html" %}
+{% block contend %}
+{% load static %}
+<link rel="stylesheet" href='{% static "css/estilos_dashboard.css" %}'/>
+<link rel="stylesheet" href='{% static "css/estilos_ficha.css" %}'/>
+
+<div class="container_1">
+  <div class="title_page">
+    <h1 class="title_1">{{ nombre_curso }}</h1>
+    <h2 class="title_2">- Ficha {{ ficha.nume_ficha }} -</h2>
+  </div>
+  <div class="contenedor-formulario">
+    <div class="formulario">
+      <p><span class="info-ficha">Fecha de inicio: </span> 
+        {% if ficha.inic_ficha == "9999-12-31" %}
+          sin definir
+        {% else %}
+          {{ ficha.inic_ficha }}
+        {% endif %}
+      </p>
+      <p><span class="info-ficha">Fecha de finalizacion: </span> 
+        {% if ficha.fina_ficha == "9999-12-31" %}
+          sin definir
+        {% else %}
+          {{ ficha.fina_ficha }}
+        {% endif %}
+      </p>
+      <p><span class="info-ficha">Lugar de formacion: </span>  {{ ficha.luga_ficha }}</p>
+      <p><span class="info-ficha">Nota del instructor: </span>  {{ ficha.nota_ficha }}</p>
+    </div>
+    
+  </div>
+
+
+  <div class="contenedor-formulario">
+    
+    <form method="POST" class="formulario" action="{% url 'ActualizarFichaAspirante' registro.iden_ficha_aspirante %}" enctype="multipart/form-data"> 
+      {% csrf_token %} 
+
+      <div class="contenedor-titulo">
+        <h2 class="titulo_registro">Formulario de registro</h2>
+      </div>
+      
+      <div class="contenedor-input">
+        <select name="nivel_educativo" id="nivel_educativo" class="campo1" required>
+          <option value="{{registro.nive_aspir}}" hidden>{{registro.nive_aspir}}</option>
+          <option value="primaria">Primaria</option>
+          <option value="secundaria">Bachiller academico</option>
+          <option value="secundaria">Bachiller tecnico</option>
+          <option value="tecnico">Técnico</option>
+          <option value="tecnologo">Tecnólogo</option>
+          <option value="profesional">Profesional</option>
+          <option value="especializacion">Especialización</option>
+          <option value="maestria">Maestría</option>
+          <option value="doctorado">Doctorado</option>
+        </select>
+        <input type="text" name="empleador" id="empleador" class="campo1" placeholder="Empleador" value="{{registro.empl_aspir}}" required />
+      </div>
+
+      <div class="contenedor-input">
+        <input type="text" name="cargo" id="cargo" class="campo1" placeholder="Cargo" value="{{registro.carg_aspir}}" required />
+        <input type="text" name="arl" id="arl" class="campo1" placeholder="Nombre ARL" value="{{registro.arl_aspir}}" required />
+      </div>
+        
+      <div class="contenedor-input">
+        <input type="text" name="area" id="area" class="campo1" placeholder="Area de trabajo" value="{{registro.area_aspir}}" required />
+        <select name="sector" id="sector" class="campo1" required>
+          <option value="{{registro.sect_aspir}}" hidden>{{registro.sect_aspir}}</option>
+          <option value="Sector agropecuario">Sector agropecuario</option>
+          <option value="Sector comercio y servicios">Sector comercio y servicio</option>
+          <option value="Sector industrial">Sector industrial</option>
+          <option value="Sector de transporte">Sector de transporte</option>
+          <option value="Sector de comercio">Sector de comercio</option>
+          <option value="Sector financiero">Sector financiero</option>
+          <option value="Sector de la construcción">Sector de la construcción</option>
+          <option value="Sector minero y energetico">Sector minero y energetico</option>
+          <option value="Sector de telecomunicaciones">Sector de telecomunicaciones</option>
+          <option value="Sector de educacion">Sector de educacion</option>
+        </select>
+      </div>
+
+      <div class="contenedor-titulo">
+        <h2 class="titulo_registro">Documentos</h2>
+      </div>
+
+      <div class="nombre-documento">
+        <label for="cedula_ampliada">Cédula ampliada al 150%: <a href="/media/{{registro.doc1}}"><span>Ver documento</span></a></label>
+        <div class="area-documento">
+          <input type="file" name="doc1" id="cedula_ampliada" class="campo1" />
+        </div>
+      </div>
+      
+      <div class="nombre-documento">
+        <label for="examen_aptitud">Examen de aptitud de alturas no mayor de 1 año: <a href="/media/{{registro.doc2}}"><span>Ver documento</span></a></label>
+        <div class="area-documento">
+          <input type="file" name="doc2" id="examen_aptitud" class="campo1" />
+        </div>
+      </div>
+      
+      <div class="nombre-documento">
+        <label for="pago_seguridad_social">Pago de seguridad social y ARL del mes en que se realiza la formación o mes vencido: <a href="/media/{{registro.doc3}}"><span>Ver documento</span></a></label>
+        <div class="area-documento">
+          <input type="file" name="doc3" id="pago_seguridad_social" class="campo1"  />
+        </div>
+      </div>
+
+      {% if registro.nume_ficha1.curs_ficha == 2 %}
+        <!-- Curso 2: Reentrenamiento Sectorial 4272 en Trabajo Seguro en Alturas -->
+        <div class="nombre-documento">
+          <label for="diploma_avanzado">Diploma de Avanzado Trabajo Seguro en Alturas o reentrenamiento ya vencido <a href="/media/{{registro.doc4}}"><span>Ver documento</span></a></label>
+          <div class="area-documento">
+            <input type="file" name="doc4" id="diploma_avanzado" class="campo1" />
+          </div>
+        </div>
+      {% elif registro.nume_ficha1.curs_ficha == 3 %}
+        <!-- Curso 3: Coordinador de Trabajo Seguro en Alturas (Resolución 4272 del 2021) -->
+        <div class="nombre-documento">
+          <label for="certificado_curso">Certificado de Trabajador autorizado o reentrenamiento vigente <a href="/media/{{registro.doc4}}"><span>Ver documento</span></a></label>
+          <div class="area-documento">
+            <input type="file" name="doc4" id="certificado_curso" class="campo1" />
+          </div>
+        </div>
+        <div class="nombre-documento">
+          <label for="constancia_laboral">Constancia laboral en supervisión o trabajo en alturas mínimo 1 año <a href="/media/{{registro.doc5}}"><span>Ver documento</span></a></label>
+          <div class="area-documento">
+            <input type="file" name="doc5" id="constancia_laboral" class="campo1" />
+          </div>
+        </div>
+      {% elif registro.nume_ficha1.curs_ficha == 4 %}
+        <!-- Curso 4: Entrenador de Trabajo Seguro en Alturas -->
+        <div class="nombre-documento">
+          <label for="titulo_tecnologo">Título de tecnólogo en seguridad y salud en el trabajo con licencia vigente <a href="/media/{{registro.doc4}}"><span>Ver documento</span></a></label>
+          <div class="area-documento">
+            <input type="file" name="doc4" id="titulo_tecnologo" class="campo1" />
+          </div>
+        </div>
+        <div class="nombre-documento">
+          <label for="experiencia_seguridad">Experiencia certificada por un año en seguridad y salud en el trabajo <a href="/media/{{registro.doc5}}"><span>Ver documento</span></a></label>
+          <div class="area-documento">
+            <input type="file" name="doc5" id="experiencia_seguridad" class="campo1" />
+          </div>
+        </div>
+        <div class="nombre-documento">
+          <label for="experiencia_alturas">Experiencia certificada por un año en trabajo seguro en alturas o protección contra caídas <a href="/media/{{registro.doc6}}"><span>Ver documento</span></a></label>
+          <div class="area-documento">
+            <input type="file" name="doc6" id="experiencia_alturas" class="campo1" />
+          </div>
+        </div>
+        <div class="nombre-documento">
+          <label for="certificado_avanzado">Certificado curso avanzado en trabajo seguro en alturas <a href="/media/{{registro.doc7}}"><span>Ver documento</span></a></label>
+          <div class="area-documento">
+            <input type="file" name="doc7" id="certificado_avanzado" class="campo1" />
+          </div>
+        </div>
+        <div class="nombre-documento">
+          <label for="certificado_coordinador">Certificado curso coordinador de trabajo en alturas <a href="/media/{{registro.doc8}}"><span>Ver documento</span></a></label>
+          <div class="area-documento">
+            <input type="file" name="doc8" id="certificado_coordinador" class="campo1" />
+          </div>
+        </div>
+        <div class="nombre-documento">
+          <label for="certificado_andamios">Certificado curso acondicionamiento de andamios <a href="/media/{{registro.doc9}}"><span>Ver documento</span></a></label>
+          <div class="area-documento">
+            <input type="file" name="doc9" id="certificado_andamios" class="campo1" />
+          </div>
+        </div>
+        <div class="nombre-documento">
+          <label for="certificado_respondiente">Certificado curso primer respondiente (mínimo 20 horas) <a href="/media/{{registro.doc10}}"><span>Ver documento</span></a></label>
+          <div class="area-documento">
+            <input type="file" name="doc10" id="certificado_respondiente" class="campo1" />
+          </div>
+        </div>
+        <div class="nombre-documento">
+          <label for="certificado_industrial">Certificado curso rescate industrial <a href="/media/{{registro.doc11}}"><span>Ver documento</span></a></label>
+          <div class="area-documento">
+            <input type="file" name="doc11" id="certificado_industrial" class="campo1" />
+          </div>
+        </div>
+      {% elif registro.nume_ficha1.curs_ficha == 5 %}
+        <!-- Curso 5: Actualización de Coordinadores para Trabajo Seguro en Alturas -->
+        <div class="nombre-documento">
+          <label for="certificado_curso">Certificado de Trabajador autorizado o reentrenamiento vigente <a href="/media/{{registro.doc4}}"><span>Ver documento</span></a></label>
+          <div class="area-documento">
+            <input type="file" name="doc4" id="certificado_curso" class="campo1" required />
+          </div>
+        </div>
+      {% elif registro.nume_ficha1.curs_ficha == 6 %}
+        <!-- Curso 6: Actualización de Entrenadores para Trabajo Seguro en Alturas -->
+        <div class="nombre-documento">
+          <label for="certificado_curso">Certificado de Trabajador autorizado o reentrenamiento vigente <a href="/media/{{registro.doc4}}"><span>Ver documento</span></a></label>
+          <div class="area-documento">
+            <input type="file" name="doc4" id="certificado_curso" class="campo1" />
+          </div>
+        </div>
+        <div class="nombre-documento">
+          <label for="certificado_entrenador">Certificado de curso de entrenador <a href="/media/{{registro.doc5}}"><span>Ver documento</span></a></label>
+          <div class="area-documento">
+            <input type="file" name="doc5" id="certificado_entrenador" class="campo1" />
+          </div>
+        </div>
+      {% endif %}
+
+      <div class="nombre-documento">
+        <label for="requisitos_previos">Formato requisitos previos diligenciado <a href="/media/{{registro.doc0}}"><span>Ver documento</span></a></label>
+        <div class="area-documento">
+          <input type="file" name="requisitos_previos" id="requisitos_previos" class="campo1" value="{{registro.doc0}}"/>
+        </div>
+      </div>
+      
+      <div class="contenedor-boton">
+        <button type="submit" class="my-custom-button2">Actualizar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src='{% static "js/scripts_mensajes.js" %}' ></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+{% endblock %}

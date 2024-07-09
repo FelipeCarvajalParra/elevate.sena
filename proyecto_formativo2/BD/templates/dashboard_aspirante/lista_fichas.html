@@ -1,0 +1,136 @@
+{% extends "dashboard_aspirante/base_aspirante.html" %}
+{% block contend %}
+{% load static %}
+<link rel="stylesheet" href='{% static "css/estilos_dashboard.css" %}'/>
+
+<style>
+  .cards .card {
+    padding: 5px;
+    background: #758795;
+  }
+
+  .card{
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s;
+    border: 2px solid black;
+    border-radius: 5px;
+  }
+
+  .card:hover{
+    transform: scale(1.05);
+  }
+
+  .card-content{
+    text-align: center;
+    height: 70%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .number{
+    font-family: "Asap", sans-serif;
+    color: rgb(255, 255, 255);
+  }
+
+  .card-name{
+    color: #3c3c3c;
+  }
+
+  .card-buttom{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30%;
+    width: 100%;
+  }
+
+  .card-buttom button{
+    height: 70%;
+    width: 80%;
+    cursor: pointer;
+    font-size: 15px;
+    cursor: pointer;
+    background-color: #465159;
+    border: 2px solid black;
+    color: #fff;
+    font-family: "Asap", sans-serif;
+  }
+
+  .title_page{
+    margin-top: 90px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .title_page h1{
+    font-family: "Asap", sans-serif;
+    font-size: 40px;
+    color: #3c3c3c;
+  }
+
+  .cards{
+    margin-top: 0px;
+  }
+
+  .card-buttom button:hover{
+    background-color: #63b0f2;
+    border: 2px solid #465159;
+    color: black;
+}
+
+</style>
+
+<div class="title_page">
+  <h1 class="title_1">-Fichas disponibles-</h1>
+</div>
+
+<!-- cartas de contenido con su contenido -->
+<div class="cards">
+  {% for ficha in fichas %}
+    {% if ficha.ficha_activa == 1 %}
+      <div class="card">
+        <div class="card-content">
+          <div class="number">{{ ficha.nume_ficha }}</div>
+          <div class="card-name">{{ ficha.curso_nombre }}</div>
+        </div>
+        <div class="card-buttom">
+          <button onclick="window.location.href = 'fichaAspirante/{{ ficha.curso_nombre }}/{{ficha.nume_ficha}}'">Mas informacion</button>
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+
+<!-- Mensajes emergentes -->
+{% if messages %}
+{% for message in messages %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "bottom-end",
+    showConfirmButton: false,
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer;
+    }
+  });
+  Toast.fire({
+    icon: "{{ message.tags }}",
+    title: "{{ message }}"
+  });
+</script>
+{% endfor %}
+{% endif %}
+<script src='{% static "js/scripts_mensajes.js" %}' ></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
+{% endblock %}

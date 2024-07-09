@@ -1,0 +1,256 @@
+.container_1 {
+  width: 100%;
+  margin-top: 90px;
+  height: auto;
+}
+
+.contenedor-files {
+  display: flex;
+  flex-direction: column;
+}
+
+.area-documento {
+  background-color: #d9d9d9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  padding: 5px;
+}
+
+.area-documento input[type="file"] {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.nombre-documento {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #63b0f2;
+  width: 70%;
+  text-align: center;
+  margin-top: 10px;
+  padding: 15px;
+  border: 1px solid black;
+  border-radius: 5px;
+  transition: transform 0.3s, font-size 0.3s;
+}
+
+.nombre-documento label {
+  font-family: "Asap", sans-serif;
+  font-weight: bold;
+}
+
+.nombre-documento:hover {
+  transform: scale(1.05);
+}
+
+.info-ficha {
+  font-family: "Asap", sans-serif;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+}
+
+.title_page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title_page .title_1 {
+  font-family: "Asap", sans-serif;
+  font-size: 45px;
+  color: #3c3c3c;
+  text-align: center;
+}
+
+/* Estilos para el botón personalizado */
+.my-custom-button2 {
+  height: 50px;
+  width: 80%;
+  padding: 5px;
+  font-size: 17px;
+  cursor: pointer;
+  background-color: #465159;
+  border: 2px solid black;
+  margin: 10px;
+  color: #fff;
+  font-family: "Asap", sans-serif;
+}
+
+.contenedor-boton p {
+  font-family: "Asap", sans-serif;
+}
+
+.contenedor-formulario {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: auto;
+}
+
+.formulario {
+  background-color: #758795;
+  width: 80%;
+  height: auto;
+  max-height: 95%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 1;
+  padding: 15px;
+  border: 3px solid #000;
+  border-radius: 15px;
+  margin: 15px;
+}
+
+.contenedor-input {
+  display: flex;
+  width: 80%;
+}
+
+.campo1 {
+  width: 70%;
+  height: 45px;
+  margin: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 17px;
+}
+
+.campo2 {
+  width: 100%;
+  height: 45px;
+  margin: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 17px;
+}
+
+.contenedor-boton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  margin-top: 10px;
+}
+
+.envio1 {
+  padding: 5px;
+  height: 90%;
+}
+
+.formulario .envio1 {
+  align-items: center;
+}
+
+.campo3 {
+  min-height: 150px;
+}
+
+.contenedor-foto {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.contenedor-foto img {
+  width: 150px;
+  height: 150px;
+  margin: 10px;
+  clip-path: circle(50% at 50% 50%);
+}
+
+@media (max-width: 768px) {
+  .contenedor-formulario:first-child::before {
+    width: 100%;
+  }
+
+  .contenedor-input {
+    flex-direction: column;
+    width: 90%;
+  }
+
+  .titulo_registro {
+    font-size: 30px;
+  }
+
+  .campo1,
+  .campo2 {
+    width: 100%;
+    margin: 0 0 15px 0;
+    height: 40px;
+  }
+}
+
+@media (max-width: 1090px) {
+  .sidebar {
+    width: 60px;
+  }
+  .main {
+    width: calc(100% - 60px);
+    left: 60px;
+  }
+  .top-bar {
+    width: calc(100% - 60px);
+  }
+
+  .sidebar .title {
+    color: #000;
+  }
+}
+
+@media (max-width: 860px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .tables {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 530px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+  .last-report td:nth-child(3) {
+    display: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .tables {
+    margin-top: 70px;
+  }
+
+  .last-report,
+  .report-for-days {
+    font-size: 70%;
+    padding: 10px;
+    min-height: 200px;
+  }
+  .cards,
+  .tables {
+    padding: 10px;
+  }
+  .search input {
+    padding: 0 10px;
+  }
+  .user {
+    width: 40px;
+    height: 40px;
+  }
+}

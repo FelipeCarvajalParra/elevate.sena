@@ -1,0 +1,96 @@
+{% extends "dashboard_instructor/base_admin.html" %}
+{% block contend %}
+{% load static %}
+<link rel="stylesheet" href='{% static "css/estilos_dashboard.css" %}'/>
+
+<!-- cartas de contenido con su contenido -->
+<div class="cards">
+  <div class="card">
+    <div class="card-content">
+      <div class="number">{{ total_registros }}</div>
+      <div class="card-name">Registros</div>
+    </div>
+    <div class="icon-box">
+      <i class="far fa-chart-bar"></i>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-content">
+      <div class="number">{{ total_mensajes }}</div>
+      <div class="card-name">Mensajes</div>
+    </div>
+    <div class="icon-box">
+      <i class="far fa-file-alt"></i>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-content">
+      <div class="number">{{ total_fichas }}</div>
+      <div class="card-name">Fichas</div>
+    </div>
+    <div class="icon-box">
+      <i class="fas fa-tasks"></i>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-content">
+      <div class="number">{{ total_usuarios }}</div>
+      <div class="card-name">Aspirantes</div>
+    </div>
+    <div class="icon-box">
+      <i class="fas fa-dollar-sign"></i>
+    </div>
+  </div>
+</div>
+
+<!-- tabla con sus respectivos parametros -->
+<div class="tables">
+  <div class="last-report">
+    <div class="heading">
+      <h2>Registros recientes</h2>
+    </div>
+
+    <!-- encabezado de la tabla -->
+    <table class="report">
+      <thead>
+        <td>Nombre/s</td>
+        <td>Apellidos</td>
+        <td>Fecha</td>
+      </thead>
+      {% for registro in registro_grupo|slice:":5" %}
+        <tr>
+          <td>{{ registro.docu_aspir1.pnom_aspir }} {{ registro.docu_aspir1.snom_aspir }}</td>
+          <td>{{ registro.docu_aspir1.pape_aspir }} {{ registro.docu_aspir1.pape_aspir }}</td>
+          <td>{{ registro.fech_regis }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+  </div>
+
+  <!-- segunda tarjeta con sus respectivos datos -->
+  <div class="report-for-days">
+    <div class="heading">
+      <h2>Mensajes<h2>
+    </div>
+    <table class="report-day">
+      <thead>
+        <td>Fecha</td>
+        <td></td>
+      </thead>
+      <tbody>
+        {% for registro in mensaje_grupo|slice:":5" %}
+        <tr>
+          <td>{{registro.fech_mensa}}</td>
+          <td>
+            <i class="far_vista bx bxs-show" style="background-color: #32bea6; cursor: pointer;" title="Visualizar" data-id="{{ registro.iden_mensa }}" data-nomb="{{ registro.nomb_mensa }}" data-apel="{{ registro.apel_mensa }}" data-mens="{{ registro.mens_mensa }}" data-fech="{{ registro.fech_mensa }}"></i>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+<script src='{% static "js/scripts_mensajes.js" %}' ></script>
+<!-- mensajes emerjentes -->
+
+{% endblock %}

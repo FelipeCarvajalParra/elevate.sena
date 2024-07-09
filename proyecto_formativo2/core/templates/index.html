@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+
+    <link rel="icon" type="image/png" href='{% static "img/iconos/nosotros.png"%}'>
+    <link rel="stylesheet" type="text/css" href='{% static "css/estilos_index.css" %}'>
+</head>
+<body>
+    <main>
+        <div class="contenido-web">
+
+            <div class="container-carousel">
+                <div class="carruseles" id="slider">
+                    <section class="slider-section slider1">
+                        <img src='{% static "img/INDEX/INDEX1.jpg" %}'>
+                        <div class="slider-text">
+                            <div class="contenido1">
+                                <div class="cont-titulo">
+                                    <h3>¡Conoce nuestra oferta educativa en trabajo en alturas!</h3>
+                                </div>
+                            </div>
+                            <div class="contenido2">
+                                <div class="cont-descripcion">
+                                    <p>Descubre tu potencial con programas innovadores que inspiran aprendizaje y éxito duradero.</p>
+                                </div>
+                            </div>
+                            <div class="contenido3">
+                                <div class="cont-boton">
+                                    <button class="boton-index" onclick="window.location.href = '/trabajador_autorizado'">VAMOS</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <section class="slider-section slider2">
+                        <img src='{% static "img/INDEX/INDEX2.jpg" %}'>
+                        <div class="slider-text">
+                            <div class="contenido1">
+                                <div class="cont-titulo">
+                                    <h3>¡Transforma tu carrera con nuestros cursos certificados!</h3>
+                                </div>
+                            </div>
+                            <div class="contenido2">
+                                <div class="cont-descripcion">
+                                    <p>Obtén habilidades prácticas y certificaciones reconocidas que te abrirán puertas en la industria.</p>
+                                </div>
+                            </div>
+                            <div class="contenido3">
+                                <div class="cont-boton">
+                                    <button onclick="window.location.href = '/redireccionarUsuario'" class="boton-index">Registrarse</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="slider-section slider3">
+                        <img src='{% static "img/INDEX/INDEX3.jpg" %}'>
+                        <div class="slider-text">
+                            <div class="contenido1">
+                                <div class="cont-titulo">
+                                    <h3>Instalaciones y Equipos de Última Generación</h3>
+                                </div>
+                            </div>
+                            <div class="contenido2">
+                                <div class="cont-descripcion">
+                                    <p>Estudia en ambientes seguros y modernos con equipos de vanguardia para una experiencia de aprendizaje inigualable.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                        
+                </div>
+                <div class="contenedor-botones">
+                    <div class="botones">
+                        <img id="btn_slider1" class="boton-slider" src='{% static "img/iconos/circulo_inactivo.png" %}'>
+                        <img id="btn_slider2" class="boton-slider" src='{% static "img/iconos/circulo_inactivo.png" %}'>
+                        <img id="btn_slider3" class="boton-slider" src='{% static "img/iconos/circulo_inactivo.png" %}'>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-tarjetas">
+                <div class="index-tarjeta-titulo">
+                    <h2>Nuestros cursos</h2>
+                </div>
+                <div class="index-tarjeta-texto">
+                    <p>En el Centro de Formación La Salada, ponemos a tu disposición la educación en alturas sin costo alguno.</p>
+                </div>
+
+                <div class="tarjetas-1">
+                    <div class="tarjeta">
+                        <img src="{% static 'img/CURSOS/curso1.webp' %}" alt="Imagen 1">
+                        <div class="overlay">
+                            <h3>Trabajador autorizado</h3>
+                        </div>
+                    </div>
+                    <div class="tarjeta">
+                        <img src="{% static 'img/CURSOS/curso2.webp' %}" alt="Imagen 2">
+                        <div class="overlay">
+                            <h3>Reentrenamiento sectorial</h3>
+                        </div>
+                    </div>
+                    <div class="tarjeta">
+                        <img src="{% static 'img/CURSOS/curso3.webp' %}" alt="Imagen 3">
+                        <div class="overlay">
+                            <h3>Coordinador</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tarjetas-1">
+                    <div class="tarjeta">
+                        <img src="{% static 'img/CURSOS/curso4.webp' %}" alt="Imagen 1">
+                        <div class="overlay">
+                            <h3>Entrenador</h3>
+                        </div>
+                    </div>
+                    <div class="tarjeta">
+                        <img src="{% static 'img/CURSOS/curso5.webp' %}" alt="Imagen 2">
+                        <div class="overlay">
+                            <h3>Actualizacion coordinador</h3>
+                        </div>
+                    </div>
+                    <div class="tarjeta">
+                        <img src="{% static 'img/CURSOS/curso6.webp' %}" alt="Imagen 3">
+                        <div class="overlay">
+                            <h3>Actualizacion entrenador</h3>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{% static 'js/scrip_slider.js'%}"></script>
+</body>
+</html>
+{% endblock %}

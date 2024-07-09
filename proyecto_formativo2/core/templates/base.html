@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+{% load static%}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- conexion hojas de estilo -->
+    <link rel="stylesheet" href='{% static "css/estilos_navegacion.css" %} ?v=12'>
+    <link rel="stylesheet" href='{% static "css/estilos_mensajes.css" %} ?v=11' >
+
+    <!-- conexion a las fuentes -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,100..900;1,100..900&family=Bebas+Neue&family=Cedarville+Cursive&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Dancing+Script:wght@400..700&family=Goudy+Bookletter+1911&family=Kadwa:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- imagen pestaña -->
+    <link rel="icon" href="{% static 'img/logoSena.png' %}" type="image/x-icon">
+</head>
+
+<body>
+    <header>
+        <div class="nave_arriba"> <!-- barra de navegacion superior -->
+            <img id="icono_menu" src='{% static "img/iconos/menu.png"%}'>
+            <nav>
+                <a href="/registro"><button id="cam_color1">Registrarse</button></a>
+                <a href="{% url 'redireccionarUsuario' %}"><button id="cam_color1">Ingresar</button></a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="nave_lateral"> <!-- barra de navegacion lateral -->
+        <ul>
+            <li id=cam_color2>
+                <a href="{% url 'Inicio' %}"><img src='{% static "img/iconos/inicio2.png" %}'></a>
+                <a href="{% url 'Inicio' %}"><span class="nombre-menu">Inicio</span></a>
+            </li>
+            <li id=cam_color2>
+                <a href="{% url 'TrabajadorAutorizado' %}"><img src='{% static "img/iconos/cursos.png" %}'></a>
+                <a href="{% url 'TrabajadorAutorizado' %}"><span class="nombre-menu">Cursos</span></a>
+            </li>
+            <li id=cam_color2>
+                <a href="{% url 'Nosotros' %}"><img src='{% static "img/iconos/nosotros.png" %}'></a>
+                <a href="{% url 'Nosotros' %}"><span class="nombre-menu">Nosotros</span></a>
+            </li>
+            <li id=cam_color2>
+                <a href="{% url 'Mensajes' %}"><img src='{% static "img/iconos/contacto.png" %}'></a>
+                <a href="{% url 'Mensajes' %}"><span class="nombre-menu">Contacto</span></a>
+            </li>
+            <li id=cam_color2>
+                <a href="{% url 'Ubicacion' %}"><img src='{% static "img/iconos/ubicacion.png" %}'></a>
+                <a href="{% url 'Ubicacion' %}"><span class="nombre-menu">Ubicacion</span></a>
+            </li>
+        </ul>
+    </div>
+
+    
+    <main>
+        {% block content %}
+            
+        {% endblock %}
+    </main>
+    
+
+    <footer class="pie_pagina">
+        <div class="grupo1">
+            <div class="box">
+                <img src="https://www.funcionpublica.gov.co/documents/28587425/42384076/logoSena.png/b8131ab9-4c1f-4ef9-8dd4-569d6b7169b6?t=1701956509586" alt="">
+                
+            </div>
+            <div class="box">
+                <h2>CONTACTO</h2>
+                <p>Correo@sena.edu.co</p>
+                <p>3196567890</p>
+            </div>
+            <div class="box">
+                <h2>UBICACION</h2>
+                <p>Km 6 Vía Caldas, La Pintada Antioquia, Caldas</p>
+            </div>
+        </div>
+        <div class="grupo2">
+            <small>&copy;2024 <b>Sena</b> - Todos los derechos reservados</small>
+        </div>
+    </footer>
+
+    
+
+<script src="{% static 'js/scrip_lateral.js' %} ?v=2"></script>
+<script src="{% static 'js/scrip_general.js'%} ?v=2"></script>
+</body>
+</html>

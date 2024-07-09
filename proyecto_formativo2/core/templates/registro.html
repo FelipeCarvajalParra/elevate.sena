@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href='{% static "css/estilos_registro.css" %}'>
+
+<style>
+/* Estilos adicionales para la página */
+main {
+    height: 100vh;
+    width: 100%;
+    background-image: url('{% static "img/fondo_4.jpg"%}');
+    background-size: cover;
+}
+</style>
+
+{% if messages %}
+    {% for message in messages %}
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+        // Alerta personalizada según el tipo de mensaje
+        Swal.fire({
+            icon: "{{ message.tags }}",
+            title: "{% if message.tags == 'success' %}Operación completada{% else %}Operación fallida{% endif %}",
+            text: "{{ message }}",
+            buttonsStyling: false,
+            confirmButtonText: "Entendido!",
+            customClass: {
+                confirmButton: 'my-custom-button2',
+            }
+        });
+        </script>
+    {% endfor %}
+{% endif %}
+
+<main>
+    <div class="contenido-web">
+        <div class="contenedor-formulario">
+            <form method="POST" class="formulario" action="{% url 'CrearRegistro' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="contenedor-titulo">
+                    <h2 class="titulo_registro">Formulario de registro</h2>
+                </div>
+
+                <div class="contenedor-input">
+                    <input type="text" name="primer_nombre" id="primer_nombre" class="campo1" placeholder="Primer nombre" required />
+                    <input type="text" name="segundo_nombre" id="segundo_nombre" class="campo1" placeholder="Segundo nombre" />
+                </div>
+
+                <div class="contenedor-input">
+                    <input type="text" name="primer_apellido" id="primer_apellido" class="campo1" placeholder="Primer apellido" required />
+                    <input type="text" name="segundo_apellido" id="segundo_apellido" class="campo1" placeholder="Segundo apellido" required />
+                </div>
+
+                <div class="contenedor-input">
+                    <input type="email" name="correo_electronico" id="correo_electronico" class="campo2" placeholder="Correo Electrónico" required />
+                </div>
+
+                <div class="contenedor-input">
+                    <input type="text" name="pais_nacimiento" id="pais_nacimiento" class="campo1" placeholder="País de nacimiento" required />
+                    <input type="text" name="fecha_nacimiento" id="fecha_nacimiento" class="campo1" placeholder="Fecha de nacimiento" required onclick="changeToDate(this)">
+                </div>
+
+                <div class="contenedor-input">
+                    <select name="genero" id="genero" class="campo1" required>
+                        <option value="" hidden>Género</option>
+                        <option value="M">Hombre</option>
+                        <option value="F">Mujer</option>
+                    </select>
+
+                    <select name="tipo_documento" id="tipo_documento" class="campo1" required>
+                        <option value="" hidden>Tipo de documento</option>
+                        <option value="CC">Cédula de Ciudadanía</option>
+                        <option value="TI">Tarjeta de Identidad</option>
+                        <option value="CE">Cédula de Extranjería</option>
+                        <option value="RC">Registro Civil</option>
+                        <option value="PA">Pasaporte</option>
+                        <option value="PE">Pasaporte Extranjero</option>
+                        <option value="DNI">Documento Nacional de Identidad</option>
+                    </select>
+                    <input type="number" name="numero_documento" id="numero_documento" class="campo1" placeholder="Número de documento" maxlength="10" required />
+                </div>
+
+                <div class="contenedor-boton">
+                    <button type="submit" class="envio1">Registrarse</button>
+                </div>
+
+            </form>
+        </div>
+
+        <script>
+            // Función para cambiar a tipo de input date
+            function changeToDate(input) {
+                input.type = 'date';
+            }
+        </script>
+    </div>
+</main>
+
+{% endblock %}

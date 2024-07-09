@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/estilos_cursos.css' %}?">
+<title>{% block title %}Coordinador{% endblock %}</title>
+
+<style>
+    .encabezado-imagen {
+        background-image: url('{% static "img/CURSOS/curso3.webp" %}');
+    }
+    .circulo-contenido {
+        background-image: url('{% static "img/CURSOS/fondo3.webp" %}');
+    }
+</style>
+
+<div class="contenido-web">
+    <div class="contenido-cursos">
+        <div class="encabezado-imagen"></div>
+        <div class="encabezado-capa-contenido">
+            <div class="encabezado-contenido">
+                <div class="circulo-contenido">
+                    <div class="capa-color">
+                        <div class="titulo-programa">
+                            <h1>Coordinador</h1>
+                        </div>
+                        <div class="navegacion-cursos">
+                            <div class="contenedor-navegacion">
+                                <div class="titulo-navegacion">
+                                    <p>Nuestros cursos</p>
+                                    <hr>
+                                </div>
+                                <div class="opciones-navegacion">
+                                    <ul>
+                                        <li><a href="{% url 'TrabajadorAutorizado' %}">Trabajador autorizado</a></li>
+                                        <li><a href="{% url 'ReentrenamientoSectorial' %}">Reentrenamiento sectorial</a></li>
+                                        <li><a class="nav-actual" href="{% url 'Coordinador' %}">Coordinador</a></li>
+                                        <li><a href="{% url 'Entrenador' %}">Entrenador</a></li>
+                                        <li><a href="{% url 'ActualizacionCoordinador' %}">Actualización Coordinador</a></li>
+                                        <li><a href="{% url 'ActualizacionEntrenador' %}">Actualización Entrenador</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="info-curso">
+    <div class="sub-contenedores">
+        <div class="info-contenedor">
+            <div class="titulo-contenedor">
+                <h2>Requisitos previos</h2>
+            </div>
+            <div class="contenido-contenedor">
+                <p>
+                    - Estar registrado en el aplicativo <span class="sofia-plus redireccion">SofiaPlus.</span><br><br>
+                    - Descargar y diligenciar el documento de <span><a href="/media/requisitos-previos/Formato Requisitos previos a la prestacion del servicio.docx" style="color: blue;">requisitos previos</a></span> 
+                </p>
+            </div>
+        </div>
+        <div class="info-contenedor cont2">
+            <div class="titulo-contenedor">
+                <h2>Documentos necesarios</h2>
+            </div>
+            <div class="contenido-contenedor">
+                <p>
+                    - 1 Copia de la cédula de ciudadanía ampliada al 150% (en la misma hoja las 2 caras de la cédula de ciudadanía) en formato PDF, legible.<br><br>
+                    - 1 Copia de examen de aptitud de alturas no mayor de 1 año, en formato PDF, legible. (deberá hacerlo de forma particular en cualquier centro médico encargado de esta área).<br><br>
+                    - 1 Copia de pago de seguridad social salud y ARL del mes en que se realiza la formación o mes vencido en formato PDF, legible.<br><br>
+                    - 1 Copia del certificado: Trabajador autorizado (Avanzado en trabajo seguro en alturas) o Reentrenamiento vigente.<br><br>  
+                    - Constancia laboral que certifique que haya supervisado o trabajado en alturas mínimo 1 año.<br><br> 
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="descripcion-curso">
+        <p class="descripcion-texto">
+            Esta formación tiene una duración de 10 días. Los primeros 5 días se realiza la parte teórica y los 5 días restantes la parte práctica. La formación es 100% presencial en el centro de entrenamiento de Trabajo seguro en Alturas ubicado en Municipio de Caldas, kilómetro 6 vía la Pintada.<br>
+            SENA: Centro de los Recursos Naturales Renovables La Salada.<br><br>
+            Para atender la formación en Coordinador de Trabajo seguro en alturas, bajo la Resolución 4272 del 2021 se debe tener en cuenta lo siguiente:<br><br>
+            1. Cupo mínimo 10 aprendices.<br><br>
+            2. Las personas deben estar registradas en el aplicativo <span class="sofia-plus redireccion">SofiaPlus</span><br><br>
+            3. Se dará apertura al grupo y preinscripción de los aspirantes cuando envíen el listado de los documentos al instructor y según la disponibilidad de este.<br><br>  
+            4. Las prácticas deben realizarse en el centro de entrenamiento ubicado en las Instalaciones de la Salada, Caldas.<br><br>
+            5. La formación no tiene ningún costo.<br><br>
+            6. El aspirante debe contar con un vínculo laboral activo, ya que el Ministerio de Trabajo exige en su registro el certificado de afiliación, pago de la ARL y el nombre de la empresa en que labora.<br><br>  
+            7. Para prácticas se requiere:<br>
+            - Botas de seguridad con punta de platina<br>
+            - Guantes de agarre<br>
+            - Ropa de trabajo<br><br>
+            8. En caso de no contar con el número de aspirantes requerido para el programa de formación, el SENA se reservará el derecho a la cancelación de la correspondiente oferta.<br><br>
+            Para consultar disponibilidad, debe <span><a class="vinculo" href="{% url 'Registro' %}">registrarse</a></span>, o puede <span><a class="vinculo" href="{% url 'Mensajes' %}">dejar un mensaje.</a></span> 
+        </p>
+    </div>
+</div>
+
+{% endblock %}
+

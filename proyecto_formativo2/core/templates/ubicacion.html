@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+    main{
+        height: 100%;
+        width: 100%;
+        background-image: url('{% static "img/fondo_5.jpg"%}');
+        background-size: cover;
+    }
+</style>
+<body>
+    <main>
+        <div class="capa_color">
+            <div class="contenido-web">
+                <div class="contenido">
+                    <div class="tarjeta_mensaje">
+                        <div class="tarjeta_directo">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3967.568846187885!2d-75.6301590859833!3d6.053728992982874!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e4687a66154d5ef%3A0x9cda1a01562a0e8f!2sSena%20la%20salada!5e0!3m2!1ses!2sco!4v1714280663781!5m2!1ses!2sco" width="90%" height="90%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                        <div class="tarjeta_indirecto">
+                            <div class="titulo izq1">
+                                <h1>Ven a visitarnos</h1>
+                            </div>
+                            <div class="mensaje izq1">
+                                <p>¡Nos encantaría conocerte en persona y mostrarte nuestro centro de formación SENA. ¡Te esperamos!</p><br>
+                                <button type="button" class="envio2" onclick='window.open("https://maps.google.com/maps/dir//Sena+la+salada+Caldas,+Antioquia/@6.0535154,-75.6294794,16z/data=!4m5!4m4!1m0!1m2!1m1!1s0x8e4687a66154d5ef:0x9cda1a01562a0e8f", "_blank")'>Marcar ruta en el mapa</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+{% endblock %}

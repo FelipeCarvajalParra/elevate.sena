@@ -1,0 +1,60 @@
+{% extends "dashboard_instructor/base_admin.html" %}
+{% block contend %}
+{% load static %}
+<link rel="stylesheet" href='{% static "css/estilos_mensajes_ds.css" %}'/>
+
+<!-- tabla con sus respectivos parametros -->
+<div class="tables">
+  <div class="last-report">
+    <div class="heading">
+      <h2>Usuarios registrados</h2>
+    </div>
+
+    <!-- encabezado de la tabla -->
+    <table class="report">
+      <thead>
+        <td class="col1">Nombres</td>
+        <td class="col2">Apellidos</td>
+        <td></td>
+      </thead>
+
+      <tbody>
+        <!-- contenido de la tabla -->
+        {% for aspirante in aspirantes %}
+        <tr>
+          <td>{{aspirante.pnom_aspir}} {{aspirante.snom_aspir}}</td>
+          <td>{{aspirante.pape_aspir}} {{aspirante.sape_aspir}}</td>
+          <td>
+            <a href="{% url 'UsuarioPerfil' aspirante.docu_aspir %}"><i class="far_vista bx bxs-show" title="Visualizar"></i></a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- mensajes emerjentes -->
+{% if messages %}
+{% for messages in messages %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "bottom-end",
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+        }
+        });
+        Toast.fire({
+        icon: "success",
+        title: "{{messages}}",
+        });
+</script>
+{% endfor %}
+{% endif %}
+{% endblock %}

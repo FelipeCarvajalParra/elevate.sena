@@ -1,0 +1,138 @@
+{% extends "dashboard_aspirante/base_aspirante.html" %}
+{% block contend %}
+{% load static %}
+
+<link rel="stylesheet" href='{% static "css/estilos_perfil.css" %} '/>
+
+<div class="container_1">
+  <div class="contenedor-formulario">
+
+    <div class="title_page">
+      <h2 class="title_1">Perfil Aspirante</h2>
+    </div> 
+
+    <form method="POST" class="formulario" action="{% url 'ActualizarAspirante' %}" enctype="multipart/form-data"> 
+      {% csrf_token %} 
+      <div class="contenedor-input">
+        <input type="text" name="primer_nombre" id="primer_nombre" class="campo1" placeholder="Primer nombre" value="{{ usuario.pnom_aspir }}" required />
+        <input type="text" name="segundo_nombre" id="segundo_nombre" class="campo1" placeholder="Segundo nombre" value="{{ usuario.snom_aspir }}" />
+      </div>
+    
+      <div class="contenedor-input">
+        <input type="text" name="primer_apellido" id="primer_apellido" class="campo1" placeholder="Primer apellido" value="{{ usuario.pape_aspir }}" required />
+        <input type="text" name="segundo_apellido" id="segundo_apellido" class="campo1" placeholder="Segundo apellido" value="{{ usuario.sape_aspir }}" required />
+      </div>
+    
+      <div class="contenedor-input">
+        <input type="email" name="correo_electronico" id="correo_electronico" class="campo2" placeholder="Correo Electrónico" value="{{ usuario.corr_aspir }}" required />
+      </div>
+    
+      <div class="contenedor-input">
+        <input type="text" name="pais_nacimiento" id="pais_nacimiento" class="campo1" placeholder="País de nacimiento" value="{{ usuario.pais_aspir }}" disabled />
+        <input type="text" name="fecha_nacimiento" id="fecha_nacimiento" class="campo1" placeholder="Fecha de nacimiento" onclick="changeToDate(this)" value="{{ usuario.fech_aspir }}" disabled />
+      </div>
+    
+      <div class="contenedor-input">
+        {% if usuario.gene_aspir == "M" %}
+          <input type="text" name="genero" id="genero" class="campo1" placeholder="Genero" value="MASCULINO" disabled />
+        {% else %}
+          <input type="text" name="genero" id="genero" class="campo1" placeholder="Genero" value="FEMENINO" disabled />
+        {% endif %}
+    
+        <select name="tipo_documento" id="tipo_documento" class="campo1">
+          <option value="" hidden>{{usuario.tdoc_aspir}}</option>
+          <option value="CC">Cédula de Ciudadanía</option>
+          <option value="TI">Tarjeta de Identidad</option>
+          <option value="CE">Cédula de Extranjería</option>
+          <option value="RC">Registro Civil</option>
+          <option value="PA">Pasaporte</option>
+          <option value="PE">Pasaporte Extranjero</option>
+          <option value="DNI">Documento Nacional de Identidad</option>
+        </select>
+        <input type="number" name="numero_documento" id="numero_documento" class="campo1" placeholder="Número de documento" maxlength="10" value="{{ usuario.docu_aspir }}" disabled  />
+      </div>
+      
+      <div class="contenedor-boton">
+        <button type="submit" class="my-custom-button2">Guardar cambios</button>
+        <p>Tenga en cuenta que si cambia su correo, su usuario de ingreso tambien lo hara.</p>
+      </div>
+    </form>
+
+
+
+<!-- Mensajes emergentes -->
+{% if messages %}
+{% for message in messages %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "bottom-end",
+    showConfirmButton: false,
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer;
+    }
+  });
+  Toast.fire({
+    icon: "{{ message.tags }}",
+    title: "{{ message }}"
+  });
+</script>
+{% endfor %}
+{% endif %}
+<script>
+  function editarInstructor(nombre, correo, ciudad, telefono, resumen, cargo, centro, foto) {
+    Swal.fire({
+      title: 'Editar Perfil',
+      width: '600px', 
+      html: `
+        <img src="${foto}" alt="Foto del Instructor" class="foto" style="width: 170px; height: 170px;"><br>
+        <input type="file" id="foto"><br>
+        <input type="text" id="nombre" class="swal2-input" placeholder="Nombre" value="${nombre}"><br>
+        <input type="email" id="correo" class="swal2-input" placeholder="Correo Electrónico" value="${correo}"><br>
+        <input type="text" id="ciudad" class="swal2-input" placeholder="Ciudad" value="${ciudad}"><br>
+        <input type="text" id="telefono" class="swal2-input" placeholder="Teléfono" value="${telefono}"><br>
+        <textarea id="resumen" class="swal2-textarea" maxlength="300" placeholder="Resumen">${resumen}</textarea><br>
+        <input type="text" id="cargo" class="swal2-input" placeholder="Cargo" value="${cargo}"><br>
+        <input type="text" id="centro" class="swal2-input" placeholder="Centro" value="${centro}"><br>
+      `,
+      focusConfirm: false,
+      showCancelButton: true,
+      confirmButtonText: 'Guardar',
+      preConfirm: () => {
+        const nombre = document.getElementById('nombre').value;
+        const correo = document.getElementById('correo').value;
+        const ciudad = document.getElementById('ciudad').value;
+        const telefono = document.getElementById('telefono').value;
+        const resumen = document.getElementById('resumen').value;
+        const cargo = document.getElementById('cargo').value;
+        const centro = document.getElementById('centro').value;
+
+        if (!nombre || !correo || !ciudad || !telefono || !resumen || !cargo || !centro) {
+          Swal.showValidationMessage('Por favor, complete todos los campos');
+          return false;
+        }
+
+        return {
+          nombre: nombre,
+          correo: correo,
+          ciudad: ciudad,
+          telefono: telefono,
+          resumen: resumen,
+          cargo: cargo,
+          centro: centro
+        };
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const url = `/actualizarInstructor/${result.value.nombre}/${result.value.correo}/${result.value.ciudad}/${result.value.telefono}/${result.value.resumen}/${result.value.cargo}/${result.value.centro}`;
+        window.location.href = url;
+      }
+    });
+  }
+</script>
+  
+{% endblock %}

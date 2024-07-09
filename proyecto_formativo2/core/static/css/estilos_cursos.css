@@ -1,0 +1,271 @@
+/* Estilos para el contenido de cursos */
+.contenido-cursos {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+}
+
+/* Estilos para el encabezado con imagen */
+.encabezado-imagen {
+    position: absolute;
+    background-image: url('/static/img/CURSOS/curso1.webp');
+    background-size: cover;
+    width: 40%;
+    height: 100%;
+    z-index: 2;
+}
+
+/* Estilos para la capa de contenido del encabezado */
+.encabezado-capa-contenido {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+}
+
+/* Estilos para el contenido dentro del encabezado */
+.encabezado-contenido {
+    width: 70%;
+    height: 100%;
+    clip-path: ellipse(100% 100% at 100% 50%);
+    margin-left: auto;
+    background-color: white;
+}
+
+/* Estilos para el círculo de contenido */
+.circulo-contenido {
+    width: calc(100% - 10px);
+    height: 100%;
+    background-image: url('/static/img/CURSOS/fondo1.webp');
+    margin-left: 10px;
+    clip-path: ellipse(100% 100% at 100% 50%);
+    background-size: cover;
+}
+
+/* Estilos para la capa de color */
+.capa-color {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(37, 46, 53, 0.6);
+    display: flex;
+}
+
+/* Estilos para el título del programa */
+.titulo-programa {
+    width: 60%;
+    height: 100%;
+}
+
+.titulo-programa h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+    font-size: 60px;
+    font-family: "Asap", sans-serif;
+    color: white;
+}
+
+/* Estilos para la navegación de cursos */
+.navegacion-cursos {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contenedor-navegacion {
+    width: 80%;
+    height: 70%;
+    background-color: black;
+    list-style: none;
+    border-radius: 10px;
+    flex-direction: column;
+}
+
+/* Estilos para el título de navegación */
+.titulo-navegacion {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(1rem, 2.5vw, 2rem);
+    height: 15%;
+    font-family: "Asap", sans-serif;
+    text-align: center;
+}
+
+.titulo-navegacion hr {
+    width: 90%;
+    margin-top: 5px;
+}
+
+/* Estilos para las opciones de navegación */
+.opciones-navegacion {
+    height: 85%;
+}
+
+.opciones-navegacion ul {
+    list-style: none;
+    height: 100%;
+}
+
+.opciones-navegacion ul li {
+    height: calc(100% / 6);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.opciones-navegacion ul li a {
+    color: white;
+    font-family: "Asap", sans-serif;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.opciones-navegacion ul li .nav-actual {
+    color: #0284FE;
+    text-decoration: underline;
+}
+
+.opciones-navegacion ul li a:hover {
+    color: #0284FE;
+}
+
+/* Estilos para la información del curso */
+.info-curso {
+    background-color: #252E35;
+    width: calc(100% - 55px);
+    height: auto;
+    left: auto;
+    margin-top: 8px;
+    margin-left: auto;
+    display: flex;
+}
+
+/* Estilos para los sub-contenedores */
+.sub-contenedores {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estilos para la descripción del curso */
+.descripcion-curso {
+    width: 50%;
+}
+
+/* Estilos para el contenedor de información */
+.info-contenedor {
+    background-color: #758795;
+    width: 70%;
+    height: auto;
+    margin-top: 40px;
+}
+
+.cont2 {
+    margin-bottom: 50px;
+}
+
+/* Estilos para el título del contenedor */
+.titulo-contenedor {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.titulo-contenedor h2 {
+    padding: 10px;
+    font-size: clamp(1rem, 2.5vw, 2rem);
+    font-family: "Asap", sans-serif;
+    text-align: center;
+    color: white;
+    text-decoration: underline;
+}
+
+/* Estilos para el contenido del contenedor */
+.contenido-contenedor {
+    height: auto;
+}
+
+.contenido-contenedor p {
+    padding: 20px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Estilos para la descripción del texto */
+.descripcion-texto {
+    padding: 20px;
+    margin-top: 20px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 20px;
+}
+
+/* Estilos para el enlace Sofía Plus */
+.sofia-plus {
+    text-decoration: underline;
+    color: #3700ff;
+    cursor: pointer;
+}
+
+/* Estilos para los vínculos */
+.vinculo {
+    color: #0284FE;
+    text-decoration: underline;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .encabezado-contenido {
+        width: 100%;
+        clip-path: none;
+    }
+
+    .circulo-contenido {
+        width: 100%;
+        clip-path: none;
+        margin-left: 0px;
+    }
+
+    .capa-color {
+        flex-direction: column;
+    }
+
+    .titulo-programa {
+        width: 100%;
+        height: 30%;
+    }
+
+    .navegacion-cursos {
+        width: 100%;
+        height: 70%;
+    }
+
+    .contenedor-navegacion {
+        height: 90%;
+    }
+
+    .info-curso {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .sub-contenedores, .descripcion-curso {
+        width: 100%;
+    }
+
+    .cont2 {
+        margin-bottom: 0;
+    }
+}

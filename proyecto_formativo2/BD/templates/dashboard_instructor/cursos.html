@@ -1,0 +1,50 @@
+{% extends "dashboard_instructor/base_admin.html" %}
+{% block contend %}
+{% load static %}
+<link rel="stylesheet" href='{% static "css/estilos_cursos_ds.css" %} ?v=13'/>
+<!-- tarjetadas donde se veran los datos -->
+<div class="card-container">
+  <div class="card">
+    <img src='{% static "img/CURSOS/curso1.webp" %}' alt="CURSO_1" />
+    <h3>Trabajador autorizado</h3>
+    <div style="display: flex;" >
+      <a href="curso/1" class="card-btn" style="width: 100%;">Fichas</a>
+    </div>
+  </div>
+  <div class="card">
+    <img src='{% static "img/CURSOS/curso2.webp" %}' alt="CURSO_2" />
+    <h3>Reentrenamiento sectorial</h3>
+    <div style="display: flex;" >
+      <a href="curso/2" class="card-btn" style="width: 100%;">Fichas</a>
+    </div>
+  </div>
+  <div class="card">
+    <img src='{% static "img/CURSOS/curso3.webp" %}' alt="CURSO_3" />
+    <h3>Coordinador</h3>
+    <div style="display: flex;" >
+      <a href="curso/3" class="card-btn" style="width: 100%;">Fichas</a>
+    </div>
+  </div>
+  <div class="card">
+    <img src='{% static "img/CURSOS/curso4.webp" %}' alt="CURSO_4" />
+    <h3>Entrenador</h3>
+    <div style="display: flex;" >
+      <a href="curso/4" class="card-btn" style="width: 100%;">Fichas</a>
+    </div>
+  </div>
+  <div class="card">
+    <img src='{% static "img/CURSOS/curso5.webp" %}' alt="CURSO_5" />
+    <h3>Actualizacion Coordinador</h3>
+    <div style="display: flex;" >
+      <a href="curso/5" class="card-btn" style="width: 100%;">Fichas</a>
+    </div>
+  </div>
+  <div class="card">
+    <img src='{% static "img/CURSOS/curso6.webp" %}' alt="CURSO_6" />
+    <h3>Actualizacion Entrenador</h3>
+    <div style="display: flex;" >
+      <a href="curso/6" class="card-btn" style="width: 100%;">Fichas</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

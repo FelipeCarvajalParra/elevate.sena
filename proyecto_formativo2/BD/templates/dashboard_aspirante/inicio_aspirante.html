@@ -1,0 +1,114 @@
+{% extends "dashboard_aspirante/base_aspirante.html" %}
+{% block contend %}
+{% load static %}
+<link rel="stylesheet" href='{% static "css/estilos_dashboard.css" %}'/>
+
+<style>
+    body {
+        font-family: "Asap", sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+
+    }
+    .container_1 {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    .welcome-section {
+        text-align: center;
+        padding: 50px 20px;
+        background: #758795;
+        color: white;
+        border-radius: 15px;
+    }
+    .welcome-section h1 {
+        font-size: 36px;
+        margin-bottom: 10px;
+    }
+    .welcome-section p {
+        font-size: 18px;
+    }
+    .section-title {
+        font-size: 24px;
+        margin: 40px 0 20px;
+        text-align: center;
+        font-family: "Asap", sans-serif;
+        font-weight: bold;
+    }
+    .content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+    }
+    .card {
+        position: relative;
+        height: 300px;
+        border-radius: 15px;
+        overflow: hidden;
+        transition: transform 0.3s, font-size 0.3s;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .card:hover {
+        transform: scale(1.05);
+    }
+    .card:hover .card-title {
+        font-size: 35px;
+    }
+    .card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .card-title {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        font-size: 24px;
+        text-align: center;
+        transition: font-size 0.3s;
+        font-family: "Asap", sans-serif;
+    }
+    @media (max-width: 768px) {
+        .card-title {
+            font-size: 20px;
+        }
+        .card:hover .card-title {
+            font-size: 24px;
+        }
+    }
+</style>
+
+<div class="container_1">
+    <div class="welcome-section">
+        <h1>Bienvenido, {{ usuario.pnom_aspir }}!</h1>
+        <p>Nos alegra verte de nuevo. ¡Explora las novedades y disfruta de tu estadía!</p>
+    </div>
+    
+    <div class="section-title">¿Qué quieres hacer?</div>
+    <div class="content">
+        
+        <div class="card" onclick="window.location.href='listaFichas'">
+            <img src="{% static 'img/CURSOS/INICIO.jpg' %}" alt="Fichas">
+            <div class="card-title">Ver fichas abiertas</div>
+        </div>
+        <div class="card" onclick="window.location.href='perfilAspirante'">
+          <img src="{% static 'img/CURSOS/curso2.webp' %}"alt="Perfil">
+          <div class="card-title">Ver Perfil</div>
+      </div>
+    </div>
+</div>
+
+<script src='{% static "js/scripts_mensajes.js" %}'></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{% endblock %}
+

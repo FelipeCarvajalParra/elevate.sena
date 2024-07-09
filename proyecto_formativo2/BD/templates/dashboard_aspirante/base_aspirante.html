@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href='{% static "css/estilos_base_ds.css" %}'/>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+     <!-- conexion a las fuentes -->
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,100..900;1,100..900&family=Bebas+Neue&family=Cedarville+Cursive&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Dancing+Script:wght@400..700&family=Goudy+Bookletter+1911&family=Kadwa:wght@400;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <!-- contenido del menu desplegable -->
+    <div class="container">
+      <div class="sidebar">
+        <!-- encabezado del menu -->
+        <ul class="list_elements">
+          <li class="elemento-navegacion-0">
+            <a href="#" class="sidebar-toggle">
+              <div class="title">Aspirante</div>
+            </a>
+          </li>
+
+          <li class="elemento-navegacion">
+            <a  href="{% url 'InicioAspirante' %}">
+              <img src="{% static 'img/ICONOS/INICIO2.png' %}" class="icono" alt="inicio">
+              <div class="title">Inicio</div>
+            </a>
+          </li>
+
+          <li class="elemento-navegacion">
+            <a href="{% url 'PerfilAspirante' %}">
+              <img src="{% static 'img/ICONOS/PERFIL.png' %}" class="icono" alt="Perfil">
+              <div class="title">Perfil</div>
+            </a>
+          </li>
+
+          <li class="elemento-navegacion">
+            <a href="{% url 'ListaFichas' %}">
+              <img src="{% static 'img/ICONOS/FICHAS.png' %}" class="icono" alt="fichas">
+              <div class="title">Fichas</div>
+            </a>
+          </li>
+
+          <li class="elemento-navegacion">
+            <a href="{% url 'ListarRegisrosFichas' %}">
+              <img src="{% static 'img/ICONOS/REGISTROS.png' %}" class="icono" alt="Perfil">
+              <div class="title">Registros</div>
+            </a>
+          </li>
+          
+
+          <li class="elemento-navegacion cerrar_sesion">
+            <a href="{% url 'Salir' %}">
+              <img src="{% static 'img/ICONOS/SALIR.png' %}" class="icono" alt="Salir">
+              <div class="title">Cerrar sesion</div>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+
+      <!-- barra de navegación -->
+      <main class="main">
+        <div class="top-bar">
+          <a>Bienvenido, <span style="font-weight: bold;">{{ usuario.pnom_aspir }} {{ usuario.snom_aspir }} {{ usuario.pape_aspir }} {{ usuario.sape_aspir }}.</span></a>
+        </div>
+
+        {% block contend %}
+          
+        {% endblock %}
+        
+      </main>
+    </div>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </body>
+</html>

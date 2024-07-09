@@ -1,0 +1,123 @@
+{% extends "dashboard_instructor/base_admin.html" %}
+{% block contend %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/estilos_perfil.css' %}">
+
+<div class="container_1">
+  <div class="contenedor-formulario">
+
+    <div class="title_page">
+      <h2 class="title_1">Perfil Instructor</h2>
+    </div> 
+
+    <form method="POST" class="formulario" action="{% url 'ActualizarInstructor' %}" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <div class="contenedor-foto">
+        <img src="{{ instructor.foto_instr.url }}" alt="Current Photo" width="100" height="100" />
+        <input type="file" name="foto_instr" id="foto_instr"/>
+      </div>
+    
+      <div class="contenedor-input">
+        <input type="text" name="nomb_instr" id="nomb_instr" class="campo1" placeholder="Nombre" value="{{ instructor.nomb_instr }}"/>
+        <input type="text" name="carg_instr" id="carg_instr" class="campo1" placeholder="Cargo" value="{{ instructor.carg_instr }}" />
+      </div>
+      
+      <div class="contenedor-input">
+        <input type="email" name="corr_instr" id="corr_instr" class="campo1" placeholder="Correo" value="{{ instructor.corr_instr }}"/>
+        <input type="text" name="tele_instr" id="tele_instr" class="campo1" placeholder="Teléfono" value="{{ instructor.tele_instr }}"/>
+      </div>
+
+      <div class="contenedor-input">
+        <input type="text" name="ciud_instr" id="ciud_instr" class="campo1" placeholder="Ciudad" value="{{ instructor.ciud_instr }}"/>
+        <input type="text" name="cent_instr" id="cent_instr" class="campo1" placeholder="Centro" value="{{ instructor.cent_instr }}" />
+      </div>
+    
+      <div class="contenedor-input">
+        <textarea name="resu_instr" id="resu_instr" class="campo2 campo3" placeholder="Resumen">{{ instructor.resu_instr }}</textarea>
+      </div>
+    
+      <div class="contenedor-boton">
+        <button type="submit" class="my-custom-button2">Guardar cambios</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% if messages %}
+{% for message in messages %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "bottom-end",
+    showConfirmButton: false,
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer;
+    }
+  });
+  Toast.fire({
+    icon: "{{ message.tags }}",
+    title: "{{ message }}"
+  });
+</script>
+{% endfor %}
+{% endif %}
+
+<script>
+  function editarInstructor(nombre, correo, ciudad, telefono, resumen, cargo, centro, foto) {
+    Swal.fire({
+      title: 'Editar Perfil',
+      width: '600px', 
+      html: `
+        <img src="${foto}" alt="Foto del Instructor" class="foto" style="width: 170px; height: 170px;"><br>
+        <input type="file" id="foto"><br>
+        <input type="text" id="nombre" class="swal2-input" placeholder="Nombre" value="${nombre}"><br>
+        <input type="email" id="correo" class="swal2-input" placeholder="Correo Electrónico" value="${correo}"><br>
+        <input type="text" id="ciudad" class="swal2-input" placeholder="Ciudad" value="${ciudad}"><br>
+        <input type="text" id="telefono" class="swal2-input" placeholder="Teléfono" value="${telefono}"><br>
+        <textarea id="resumen" class="swal2-textarea" maxlength="300" placeholder="Resumen">${resumen}</textarea><br>
+        <input type="text" id="cargo" class="swal2-input" placeholder="Cargo" value="${cargo}"><br>
+        <input type="text" id="centro" class="swal2-input" placeholder="Centro" value="${centro}"><br>
+      `,
+      focusConfirm: false,
+      showCancelButton: true,
+      confirmButtonText: 'Guardar',
+      preConfirm: () => {
+        const nombre = document.getElementById('nombre').value;
+        const correo = document.getElementById('correo').value;
+        const ciudad = document.getElementById('ciudad').value;
+        const telefono = document.getElementById('telefono').value;
+        const resumen = document.getElementById('resumen').value;
+        const cargo = document.getElementById('cargo').value;
+        const centro = document.getElementById('centro').value;
+
+        if (!nombre || !correo || !ciudad || !telefono || !resumen || !cargo || !centro) {
+          Swal.showValidationMessage('Por favor, complete todos los campos');
+          return false;
+        }
+
+        return {
+          nombre: nombre,
+          correo: correo,
+          ciudad: ciudad,
+          telefono: telefono,
+          resumen: resumen,
+          cargo: cargo,
+          centro: centro
+        };
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const url = `/actualizarInstructor/${result.value.nombre}/${result.value.correo}/${result.value.ciudad}/${result.value.telefono}/${result.value.resumen}/${result.value.cargo}/${result.value.centro}`;
+        window.location.href = url;
+      }
+    });
+  }
+</script>
+{% endblock %}
+
+

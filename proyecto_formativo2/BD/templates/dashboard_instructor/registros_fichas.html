@@ -1,0 +1,107 @@
+{% extends "dashboard_instructor/base_admin.html" %}
+
+{% block contend %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/estilos_mensajes_ds.css' %}" />
+
+<!-- Tabla con sus respectivos parámetros -->
+<div class="tables">
+  <div class="last-report">
+    <div class="heading">
+      <h2>{{ nombre_curso }}</h2>
+      <div class="search">
+        <a href="/crearExcel/{{ ficha }}" class="btn">Descargar plantilla</a>
+      </div>
+    </div>
+
+    <!-- Encabezado de la tabla -->
+    <table class="report">
+      <thead>
+        <tr>
+          <th class="col2">Primer nombre</th>
+          <th class="col2">Segundo nombre</th>
+          <th class="col2">Primer apellido</th>
+          <th class="col2">Segundo apellido</th>
+          <th class="col2">Documento</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Contenido de la tabla -->
+        {% for registro in registros %}
+        <tr>
+          <td>{{ registro.docu_aspir1.pnom_aspir }}</td>
+          <td>{{ registro.docu_aspir1.snom_aspir }}</td>
+          <td>{{ registro.docu_aspir1.pape_aspir }}</td>
+          <td>{{ registro.docu_aspir1.sape_aspir }}</td>
+          <td>{{ registro.docu_aspir1.docu_aspir }}</td>
+          <td>
+            <i class="far_vista bx bxs-show" title="Ver registros"
+              data-tdoc_aspir="{{ registro.docu_aspir1.tdoc_aspir }}"
+              data-docu_aspir="{{ registro.docu_aspir1.docu_aspir }}"
+              data-pnom_aspir="{{ registro.docu_aspir1.pnom_aspir }}"
+              data-snom_aspir="{{ registro.docu_aspir1.snom_aspir }}"
+              data-pape_aspir="{{ registro.docu_aspir1.pape_aspir }}"
+              data-sape_aspir="{{ registro.docu_aspir1.sape_aspir }}"
+              data-gene_aspir="{{ registro.docu_aspir1.gene_aspir }}"
+              data-pais_aspir="{{ registro.docu_aspir1.pais_aspir }}"
+              data-fech_aspir="{{ registro.docu_aspir1.fech_aspir }}"
+              data-nive_aspir="{{ registro.nive_aspir }}"
+              data-area_aspir="{{ registro.area_aspir }}"
+              data-carg_aspir="{{ registro.carg_aspir }}"
+              data-sect_aspir="{{ registro.sect_aspir }}"
+              data-empl_aspir="{{ registro.empl_aspir }}"
+              data-arl_aspir="{{ registro.arl_aspir }}"
+              data-corr_aspir="{{ registro.docu_aspir1.corr_aspir }}"
+              data-iden_ficha="{{ registro.iden_ficha_aspirante }}"
+              data-curs_ficha="{{ registro.nume_ficha1.curs_ficha }}"
+              data-doc0="{{ registro.doc0 }}"
+              data-doc1="{{ registro.doc1 }}"
+              data-doc2="{{ registro.doc2 }}"
+              data-doc3="{{ registro.doc3 }}"
+              data-doc4="{{ registro.doc4 }}"
+              data-doc5="{{ registro.doc5 }}"
+              data-doc6="{{ registro.doc6 }}"
+              data-doc7="{{ registro.doc7 }}"
+              data-doc8="{{ registro.doc8 }}"
+              data-doc9="{{ registro.doc9 }}"
+              data-doc10="{{ registro.doc10 }}"
+              data-doc11="{{ registro.doc11 }}"
+            ></i>
+            <i class="far_eliminar bx bxs-trash" title="Eliminar registro" onclick="validacion('{{ registro.iden_ficha_aspirante }}', '{{ ficha }}')"></i>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script src="{% static 'js/scripts_registos_fichas.js' %}"></script>
+
+<!-- Mensajes emergentes -->
+{% if messages %}
+{% for message in messages %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "bottom-end",
+    showConfirmButton: false,
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer;
+    }
+  });
+  Toast.fire({
+    icon: "{{ message.tags }}",
+    title: "{{ message }}"
+  });
+</script>
+{% endfor %}
+{% endif %}
+
+{% endblock %}

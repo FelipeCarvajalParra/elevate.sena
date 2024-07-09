@@ -1,0 +1,224 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body{
+    margin: 0;
+    padding: 0;
+}
+
+/* -----------------------------barra de navegacion superior----------------------------- */
+
+#icono_menu {
+    width: 35px;
+    height: 35px;
+    margin-left: 10px;
+}
+
+.nave_arriba {  /* diseño barra de navegacion */ 
+    background-color: black;
+    height: 55px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+}
+    
+.nave_arriba nav {
+    margin-right: 9px;
+    margin-left: auto; /* Esto empujará los botones hacia la derecha */
+    align-items: center;
+}
+
+.nave_arriba nav button {  /*Diseño botones de registro*/ 
+    background-color: #63B0F2; 
+    width: 120px;
+    height: 30px;
+    color: #ffff;
+    margin-left: 9px;
+    border-radius: 7px;
+    border-color:  #63B0F2;
+    font-size: large;
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: pointer;
+}
+
+/* -----------------------------barra de navegacion lateral----------------------------- */
+
+.nave_lateral {
+    height: 100%;
+    width: 55px;
+    position: fixed;
+    z-index: 9999;
+    top: 55px;
+    left: 0;
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    transition: width 0.2s ease-out;
+}
+
+.nave_lateral ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nave_lateral ul li {
+    margin-bottom: 10px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+.nave_lateral ul a{
+    text-decoration: none;
+    color: #ffff;
+}
+
+.nave_lateral ul img {
+    width: 35px;
+    height: 35px;
+    margin-left: 10px;
+    margin-top: 17px;
+}
+
+.nombre-menu{
+    margin-top: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+}
+
+.nave_lateral ul li .nombre-menu {
+    display: none;
+    margin-left: 10px;
+}
+
+.nave_lateral.expandida {
+    width: 170px;
+}
+
+.nave_lateral.expandida ul li .nombre-menu {
+    display: block;
+}
+
+.nave_lateral.expandida ul img{
+    margin-left: 10px;
+}
+
+@media (max-width: 768px) {
+    .nave_lateral {
+        width: 0;
+        overflow: hidden;
+    }
+
+    .nave_lateral ul li img {
+        display: block;
+    }
+
+    .nave_lateral.expandida {
+        width: 200px;
+    }
+
+    .nave_lateral.expandida ul li .nombre-menu {
+        display: block;
+    }
+}
+
+/* codigo para que los iconos cambien de color cuando se les pasa el cursor*/
+
+#cam_color2 {
+    transition: opacity 0.2s; /* Agrega una transición suave a la propiedad de opacidad */
+}
+
+#cam_color1:hover {
+    opacity: 0.7; /* Reduce la opacidad al pasar el cursor sobre la imagen */
+}
+
+#cam_color2, #icono_menu{
+    transition: opacity 0.2s; 
+}
+
+#cam_color2:hover, #icono_menu:hover {
+    opacity: 0.4; 
+    cursor: pointer;
+}
+
+/* -----------------------------Pie de pagina----------------------------- */
+
+.pie_pagina {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #000000;
+    padding: auto;
+    margin: 0;
+}
+
+.grupo1 {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.box {
+    flex: 1 1 300px;
+    margin: 10px;
+    text-align: center;
+}
+
+.box h2{
+    color: #0284FE;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.box p{
+    color: #ffff;
+    font-size: large;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 15px;
+}
+
+.box img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+.grupo2 {
+    width: 100%; /* Cambio a 100vw */
+    text-align: center;
+    color: aliceblue;
+    background-color: #333333;
+    padding: 10px 0;
+    position: static;
+    bottom: 0;
+    left: 0;
+}
+
+/* -----------------------------Funcion de contenido responsivo----------------------------- */
+
+.contenido-web{
+    margin-left: 55px;
+    margin-top: 55px;
+    height: 100vh;
+    width: calc(100% - 55px);
+}
+
+@media (max-width: 768px) {
+    .contenido-web{
+        margin-left: 0;
+        width: 100%;
+    }
+}
+

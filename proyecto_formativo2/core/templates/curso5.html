@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/estilos_cursos.css' %}">
+<title>{% block title %}Actualizacion Coordinador{% endblock %}</title>
+
+<style>
+    .encabezado-imagen {
+        background-image: url('{% static "img/CURSOS/curso5.webp" %}');
+    }
+    .circulo-contenido {
+        background-image: url('{% static "img/CURSOS/fondo5.webp" %}');
+    }
+</style>
+
+<div class="contenido-web">
+    <div class="contenido-cursos">
+        <div class="encabezado-imagen"></div>
+        <div class="encabezado-capa-contenido">
+            <div class="encabezado-contenido">
+                <div class="circulo-contenido">
+                    <div class="capa-color">
+                        <div class="titulo-programa">
+                            <h1>Actualización Coordinador</h1>
+                        </div>
+                        <div class="navegacion-cursos">
+                            <div class="contenedor-navegacion">
+                                <div class="titulo-navegacion">
+                                    <p>Nuestros cursos</p>
+                                    <hr>
+                                </div>
+                                <div class="opciones-navegacion">
+                                    <ul>
+                                        <li><a href="{% url 'TrabajadorAutorizado' %}">Trabajador autorizado</a></li>
+                                        <li><a href="{% url 'ReentrenamientoSectorial' %}">Reentrenamiento sectorial</a></li>
+                                        <li><a href="{% url 'Coordinador' %}">Coordinador</a></li>
+                                        <li><a href="{% url 'Entrenador' %}">Entrenador</a></li>
+                                        <li><a class="nav-actual" href="{% url 'ActualizacionCoordinador' %}">Actualización Coordinador</a></li>
+                                        <li><a href="{% url 'ActualizacionEntrenador' %}">Actualización Entrenador</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="info-curso">
+    <div class="sub-contenedores">
+        <div class="info-contenedor">
+            <div class="titulo-contenedor">
+                <h2>Requisitos previos</h2>
+            </div>
+            <div class="contenido-contenedor">
+                <p>
+                    - Estar registrado en el aplicativo <span class="sofia-plus redireccion">SofiaPlus.</span><br><br>
+                    - Descargar y diligenciar el documento de <span><a href="/media/requisitos-previos/Formato Requisitos previos a la prestacion del servicio.docx" style="color: blue;">requisitos previos</a></span> 
+                </p>
+            </div>
+        </div>
+
+        <div class="info-contenedor cont2">
+            <div class="titulo-contenedor">
+                <h2>Documentos necesarios</h2>
+            </div>
+            <div class="contenido-contenedor">
+                <p>
+                    - 1 Copia de la cédula de ciudadanía ampliada al 150% (en la misma hoja las 2 caras de la cédula de ciudadanía) en formato PDF, legible.<br><br>
+                    - 1 Copia de examen de aptitud de alturas no mayor de 1 año, en formato PDF, legible. (deberá hacerlo de forma particular en cualquier centro médico encargado de esta área).<br><br>
+                    - 1 Copia de pago de seguridad social salud, y ARL del mes en que se realiza la formación o mes vencido en formato PDF, legible.<br><br>
+                    - Certificado del curso de trabajador autorizado o reentrenamiento vigente. 
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="descripcion-curso">
+        <p class="descripcion-texto">
+            Esta formación tiene una duración de 2 días. La formación es 100% presencial en el centro de entrenamiento de Trabajo seguro en Alturas ubicado en Municipio de Caldas kilómetro 6 vía la pintada.<br>
+            SENA: Centro de los Recursos Naturales Renovables La Salada.<br><br>
+            Para atender la formación de Actualización de Coordinadores para Trabajo Seguro en Altura de trabajo seguro en alturas se debe tener en cuenta lo siguiente:<br><br>
+            1. Cupo mínimo 10 aprendices.<br><br>
+            2. Las personas deben estar registradas en el aplicativo <span class="sofia-plus redireccion">SofiaPlus</span><br><br>
+            3. Se dará apertura al grupo y preinscripción de los aspirantes cuando envíen el listado de los documentos al instructor y según la disponibilidad de este.<br><br>  
+            4. Las prácticas deben realizarse en el centro de entrenamiento ubicado en las Instalaciones de la Salada, Caldas.<br><br>
+            5. La formación no tiene ningún costo.<br><br>
+            6. El aspirante debe contar con un vínculo laboral activo, ya que el Ministerio de Trabajo exige en su registro el certificado de afiliación, pago de la ARL y el nombre de la empresa en que labora.<br><br>  
+            7. En caso de no contar con el número de aspirantes requerido para el programa de formación, el SENA se reservará el derecho a la cancelación de la correspondiente oferta.<br><br>
+            Para consultar disponibilidad, debe <span><a class="vinculo" href="{% url 'Registro' %}">registrarse</a></span>, o puede <span><a class="vinculo" href="{% url 'Mensajes' %}">dejar un mensaje.</a></span> 
+        </p>
+    </div>
+</div>
+
+{% endblock %}
+

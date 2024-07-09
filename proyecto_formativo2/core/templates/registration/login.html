@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <link rel="stylesheet" type="text/css" href='{% static "css/estilos_ingreso.css" %} ?v=11' >
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,100..900;1,100..900&family=Bebas+Neue&family=Cedarville+Cursive&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Dancing+Script:wght@400..700&family=Gabarito:wght@400..900&family=Goudy+Bookletter+1911&family=Kadwa:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<style>
+    main{
+        height: 100%;
+        width: 100%;
+        background-image: url('{% static "img/area_alturas_1.jpg"%}');
+        background-size: cover;
+    }
+    form{
+        height: 100%;
+        width: 100%;
+
+    }
+</style>
+<body>
+    <main>
+        <div class="capa_color">
+            <div class="contenido-web">
+                <div class="contenido">
+                    
+                        <div class="ingreso">
+                            <div class="ingreso_color">
+                                <div class="mensaje-form"> 
+                                    <h1 onclick="location.href='/redireccionarUsuario'" class="titulo_form">Iniciar sesion</h1>
+                                </div>
+                                <form method="post" class="formulario" id="formulario_ingreso">
+                                    {% csrf_token %}
+                                    <input type="text" name="username" placeholder="Usuario" id="usuarioInput" required>
+                                    <input type="password" name="password" placeholder="Contraseña" id="contrasenaInput" required>
+                                </form>
+                                            
+                                            
+                                <div class="boton_ingreso">
+                                    <button type="submit" id="boton_ingreso">Ingresar</button>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                        <div class="mensaje">
+                            <h2>¡Bienvenidos!</h2>
+                        </div>
+                        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+<script>
+    document.getElementById("boton_ingreso").addEventListener("click", function() {
+        if (validarFormulario()) {
+            document.getElementById("formulario_ingreso").submit();
+        } else {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "buttom-end",
+                showConfirmButton: false,
+                timer: 1000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.onmouseenter = Swal.stopTimer;
+                  toast.onmouseleave = Swal.resumeTimer;
+                }
+              });
+              Toast.fire({
+                icon: "error",
+                title: "Complete todos los campos"
+              });;
+        }
+    });
+
+    function validarFormulario() {
+        var usuario = document.getElementById("usuarioInput").value;
+        var contrasena = document.getElementById("contrasenaInput").value;
+
+        // Verificar que los campos no estén vacíos
+        if (usuario.trim() === "" || contrasena.trim() === "") {
+            return false;
+        }
+        return true;
+    }
+</script>
+
+
+</html>
+{% endblock %}

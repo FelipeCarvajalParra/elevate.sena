@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href='{% static "css/estilos_base_ds.css" %}'/>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+ 
+  </head>
+  <body>
+    <!-- contenido del menu desplegable -->
+    <div class="container">
+      <div class="sidebar">
+        <!-- encabezado del menu -->
+        <ul class="list_elements">
+          <li class="elemento-navegacion-0">
+            <a href="#" class="sidebar-toggle">
+              <div class="title">Administrador</div>
+            </a>
+          </li>
+
+          <!-- subsitios del menu -->
+          <li class="elemento-navegacion">
+            <a href="{% url 'DashboardInstructor' %}">
+              <img src="{% static 'img/ICONOS/DASHBOARD.png' %}" class="icono" alt="inicio">
+              <div class="title">Dashboard</div>
+            </a>
+          </li>
+
+          <li class="elemento-navegacion">
+            <a href="{% url 'PerfilInstructor' %}">
+              <img src="{% static 'img/ICONOS/PERFIL.png' %}" class="icono" alt="inicio">
+              <div class="title">Perfil</div>
+            </a>
+          </li>
+
+          <li class="elemento-navegacion">
+            <a href="{% url 'Cursos' %}">
+              <img src="{% static 'img/ICONOS/CURSOS2.png' %}" class="icono" alt="inicio">
+              <div class="title">Cursos</div>
+            </a>
+          </li>
+
+          <li class="elemento-navegacion">
+            <a href="{% url 'UsuariosRegistrados' %}">
+              <img src="{% static 'img/ICONOS/USUARIOS3.png' %}" class="icono" alt="inicio">
+              <div class="title">Usuarios</div>
+            </a>
+          </li>
+
+          <li class="elemento-navegacion">
+            <a href="{% url 'MensajesRecibidos' %}">
+              <img src="{% static 'img/ICONOS/MENSAJES.png' %}" class="icono" alt="inicio">
+              <div class="title">Mensajes</div>
+            </a>
+          </li>
+
+          <li class="elemento-navegacion cerrar_sesion">
+            <a href="{% url 'Salir' %}">
+              <img src="{% static 'img/ICONOS/SALIR.png' %}" class="icono" alt="fichas">
+              <div class="title">Cerrar sesion</div>
+            </a>
+          </li>
+
+
+        </ul>
+      </div>
+
+      <!-- barra de navegación -->
+      <main class="main">
+        <div class="top-bar">
+          <a>Bienvenido, <span style="font-weight: bold;">{{ instructor.nomb_instr }}.</span></a>
+        </div>
+
+        {% block contend %}
+          
+        {% endblock %}
+        
+      </main>
+    </div>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </body>
+</html>
