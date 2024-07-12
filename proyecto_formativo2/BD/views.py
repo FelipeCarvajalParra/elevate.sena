@@ -323,6 +323,7 @@ def RegistrarMensaje(request):
     return redirect('Mensajes')
 
 @login_required
+@group_required('instructor', redirect_url='Salir')
 def eliminarMensaje(request, id):
     # Eliminar mensaje
     registroBorrar = Mensaje.objects.get(iden_mensa=id)
@@ -348,6 +349,9 @@ def crearRegistro(request):
         # Verificar si ya existe un usuario con el mismo correo electrónico o número de documento
         if User.objects.filter(email=correo_electronico).exists(): 
             messages.error(request, 'El correo electrónico ya está registrado.')
+            return redirect('Registro')
+        elif int(numero_documento) < 1:
+            messages.error(request, 'El número de documento no puede ser 0.')
             return redirect('Registro')
         elif User.objects.filter(id=numero_documento).exists():
             messages.error(request, 'El número de documento ya está registrado.')
@@ -514,6 +518,8 @@ def listar_registros_fichas(request):
     usuario_actual = request.user
     user_id = usuario_actual.id
     
+    info_aspir = get_object_or_404(Aspirante, pk=user_id)
+    
     registros = FichaAspirante.objects.filter(docu_aspir1=user_id)
     
     # Diccionario de cursos
@@ -533,6 +539,7 @@ def listar_registros_fichas(request):
     
     context = {
         'registros': registros,
+        'usuario': info_aspir,
     }
     
     return render(request, 'dashboard_aspirante/registros.html', context)
@@ -540,13 +547,19 @@ def listar_registros_fichas(request):
 
 def formulario_actualizacion_registro(request, id):
     
+    usuario = get_object_or_404(Aspirante, pk= request.user.id)
     registro = get_object_or_404(FichaAspirante, iden_ficha_aspirante = id)
+    ficha = get_object_or_404(Ficha, pk = registro.nume_ficha1.nume_ficha)
     
     context = {
         'registro': registro,
+        'usuario': usuario, 
+        'ficha': ficha
     }
     
     return render(request, 'dashboard_aspirante/registro.html', context)
+
+
 
 def actualizar_aspirante_ficha(request, id):
 

@@ -12,15 +12,15 @@
   <div class="contenedor-formulario">
     <div class="formulario">
       <p><span class="info-ficha">Fecha de inicio: </span> 
-        {% if ficha.inic_ficha == "9999-12-31" %}
-          sin definir
+        {% if ficha.inic_ficha|date:"Y-m-d" == "9999-12-31" %}
+          Sin definir
         {% else %}
           {{ ficha.inic_ficha }}
         {% endif %}
       </p>
       <p><span class="info-ficha">Fecha de finalizacion: </span> 
-        {% if ficha.fina_ficha == "9999-12-31" %}
-          sin definir
+        {% if ficha.fina_ficha|date:"Y-m-d" == "9999-12-31" %}
+          Sin definir
         {% else %}
           {{ ficha.fina_ficha }}
         {% endif %}

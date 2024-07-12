@@ -9,11 +9,64 @@
     <title>Inicio</title>
 
     <link rel="icon" type="image/png" href='{% static "img/iconos/nosotros.png"%}'>
-    <link rel="stylesheet" type="text/css" href='{% static "css/estilos_index.css" %}'>
+    <link rel="stylesheet" type="text/css" href='{% static "css/estilos_index.css" %} ?v=10'>
 </head>
 <body>
     <main>
         <div class="contenido-web">
+
+            <style>
+                .slider1, .slider2, .slider3 {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                .slider-text{
+                    width: 100%;
+                    height: 100%;
+
+                    display: flex;
+                    justify-content: center;
+                    flex-direction: column;
+                }
+
+                .contenido1{
+                    height: 30%;
+                    width: 90%;
+                    font-family: "Asap", sans-serif;
+                    font-size: 300%;
+
+                }
+
+                .contenido2{
+                    width: 90%;
+                    height: 20%;
+                    font-size: 150%;
+                    font-family: "Asap", sans-serif;
+
+                }
+
+                .contenido3{
+                    width: 90%;
+                    height: 20%;
+                    display: flex;
+                    align-items: center;
+
+
+                }
+
+                .boton-index{
+                    height: 50px;
+                    width: 250px;
+                    font-size: 17px;
+                    cursor: pointer;
+                    background-color: #465159;
+                    border: 2px solid black;
+                    color: #fff;
+                    font-family: "Asap", sans-serif;
+                }
+            </style>
 
             <div class="container-carousel">
                 <div class="carruseles" id="slider">
